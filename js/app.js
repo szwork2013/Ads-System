@@ -3,7 +3,7 @@ var app = angular
     .config(function($routeProvider){
         $routeProvider
             .when('/', {
-                templateUrl: 'templates/hello.html',
+                templateUrl: 'templates/home.html',
                 controller: 'HomeController'
             })
             .otherwise({redirectTo: '/'});

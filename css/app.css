@@ -1,3 +1,13 @@
 #min-height {
     min-height: 520px;
 }
+.categories-filter{
+    font-weight: normal;
+}
+.checkbox-inline{
+    position: absolute;
+    top: -999px;
+}
+.checkbox-inline:checked + .categories-filter {
+    background-color: #28a4c9;
+}

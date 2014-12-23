@@ -8035,7 +8035,7 @@ function $HttpProvider() {
     </select>
     <input type="text" ng-model="url" size="80"/>
     <button id="fetchbtn" ng-click="fetch()">fetch</button><br>
-    <button id="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
+    <button id="samplegetbtn" ng-click="updateModel('GET', 'http-home.html')">Sample GET</button>
     <button id="samplejsonpbtn"
       ng-click="updateModel('JSONP',
                     'https://angularjs.org/greet.php?callback=JSON_CALLBACK&name=Super%20Hero')">
@@ -8054,7 +8054,7 @@ function $HttpProvider() {
     .controller('FetchController', ['$scope', '$http', '$templateCache',
       function($scope, $http, $templateCache) {
         $scope.method = 'GET';
-        $scope.url = 'http-hello.html';
+        $scope.url = 'http-home.html';
 
         $scope.fetch = function() {
           $scope.code = null;
@@ -8077,7 +8077,7 @@ function $HttpProvider() {
         };
       }]);
 </file>
-<file name="http-hello.html">
+<file name="http-home.html">
   Hello, $http!
 </file>
 <file name="protractor.js" type="protractor">
