@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-9" >
         <div class="row">
-            <div class="col-lg-12" ng-repeat="ad in allAds.ads">
+            <div class="col-lg-12" ng-repeat="ad in allAds.ads | filter: {townId: filterTown} | filter: {categoryId: filterCategory}">
                 <hr />
                 <h3><strong>{{ ad.title }}</strong><span class="pull-right">{{ ad.date | date}}</span></h3>
                 <div class="col-md-3">
@@ -30,20 +30,22 @@
         <div>
             <div class="list-group">
                 <h3 class="text-center"><strong>Categories</strong></h3>
-                <input type="checkbox" class="checkbox-inline" id="cars">
-                <label for="cars" class="list-group-item categories-filter">Cars</label>
-                <input type="checkbox" class="checkbox-inline" id="cars1">
-                <label for="cars1" class="list-group-item categories-filter">Cars</label>
-                <input type="checkbox" class="checkbox-inline" id="cars2">
-                <label for="cars2" class="list-group-item categories-filter">Cars</label>
+                <div>
+                    <select multiple ng-model="filterCategory">
+                        <option class="list-group-item" value="">All categories</option>
+                        <option class="list-group-item" ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div>
             <div class="list-group">
                 <h3 class="text-center"><strong>Towns</strong></h3>
                 <div>
-                    <input type="checkbox" class="checkbox-inline" id="pl">
-                    <label for="pl" class="list-group-item categories-filter">Plovdiv</label>
+                    <select multiple ng-model="filterTown">
+                        <option class="list-group-item" value="">All towns</option>
+                        <option class="list-group-item" ng-repeat="t in towns" value="{{ t.id }}">{{ t.name }}</option>
+                    </select>
                 </div>
             </div>
         </div>

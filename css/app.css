@@ -6,8 +6,15 @@
 }
 .checkbox-inline{
     position: absolute;
-    top: -999px;
+    left: -999px;
 }
 .checkbox-inline:checked + .categories-filter {
     background-color: #28a4c9;
+}
+.checkbox-inline + .categories-filter {
+    background-color: lightgrey;
+}
+select[multiple]{
+    height: 100%;
+    width: 100%;
 }
