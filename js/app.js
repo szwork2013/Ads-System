@@ -2,7 +2,7 @@ var app = angular
     .module('app', ['ngRoute'])
     .config(function($routeProvider, $locationProvider){
         $routeProvider
-            .when('/', {
+            .when('/:category?', {
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
             })

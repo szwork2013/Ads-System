@@ -1,15 +1,22 @@
-app.factory('adsData', function($http, $q){
+app.factory('dataRequester', function($http, $q){
 
-    function getAds(){
+    function getAds(urlParams){
         var defer = $q.defer();
 
-        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/ads'})
-            .success(function(data, status, headers, config){
+        var parameters = '?';
+
+        for (var par in urlParams){
+            parameters += urlParams[par] + '&';
+        }
+
+        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/ads' + parameters})
+            .success(function (data, status, headers, config) {
                 defer.resolve(data);
             })
-            .error(function(data, status, headers, config){
+            .error(function (data, status, headers, config) {
                 defer.reject(data);
             });
+
 
         return defer.promise;
     }

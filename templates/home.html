@@ -31,9 +31,9 @@
             <div class="list-group">
                 <h3 class="text-center"><strong>Categories</strong></h3>
                 <div>
-                    <select multiple ng-model="filterCategory">
-                        <option class="list-group-item" value="">All categories</option>
-                        <option class="list-group-item" ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+                    <select multiple>
+                        <option class="list-group-item" ng-click="getAllCategories()">All categories</option>
+                        <option class="list-group-item" ng-repeat="cat in categories" ng-click="getCategoryId(cat.id)">{{ cat.name }}</option>
                     </select>
                 </div>
             </div>
@@ -42,9 +42,9 @@
             <div class="list-group">
                 <h3 class="text-center"><strong>Towns</strong></h3>
                 <div>
-                    <select multiple ng-model="filterTown">
-                        <option class="list-group-item" value="">All towns</option>
-                        <option class="list-group-item" ng-repeat="t in towns" value="{{ t.id }}">{{ t.name }}</option>
+                    <select multiple>
+                        <option class="list-group-item" ng-click="getAllTowns()">All towns</option>
+                        <option class="list-group-item" ng-repeat="t in towns" ng-click="getTownId(t.id)">{{ t.name }}</option>
                     </select>
                 </div>
             </div>
