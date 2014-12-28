@@ -9,7 +9,7 @@ app.factory('dataRequester', function($http, $q){
             parameters += urlParams[par] + '&';
         }
 
-        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/ads' + parameters})
+        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/ads' + parameters + '&pagesize=3'})
             .success(function (data, status, headers, config) {
                 defer.resolve(data);
             })

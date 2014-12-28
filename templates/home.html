@@ -50,4 +50,13 @@
             </div>
         </div>
     </div>
+    <div class="col-md-9">
+        <div class="pull-right">
+            <hr />
+            <strong>Pages: </strong>
+            <div class="btn-group">
+                <a href="" ng-click="showPage($index+1)" class="btn btn-default" ng-repeat="i in getNumber(allAds.numPages) track by $index">{{ $index+1 }}</a>
+            </div>
+        </div>
+    </div>
 </div>

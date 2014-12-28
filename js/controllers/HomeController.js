@@ -17,11 +17,13 @@ app.controller('HomeController', function($scope, dataRequester){
     $scope.urlParams = [];
     $scope.getCategoryId = function(id){
         $scope.urlParams['categoryIdParam'] = 'categoryid=' + id;
+        delete $scope.urlParams['currentPage'];
         urlParser();
     };
 
     $scope.getTownId = function(id){
         $scope.urlParams['townIdParam'] = 'townid=' + id;
+        delete $scope.urlParams['currentPage'];
         urlParser();
     };
 
@@ -40,5 +42,14 @@ app.controller('HomeController', function($scope, dataRequester){
             .then(function(data) {
                 $scope.allAds = data;
             });
+    }
+
+    $scope.getNumber = function(number){
+        return new Array(number);
+    };
+
+    $scope.showPage = function(num){
+        $scope.urlParams['currentPage'] = 'startpage=' + num;
+        urlParser();
     }
 });
