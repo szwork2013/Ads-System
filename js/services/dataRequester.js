@@ -9,7 +9,7 @@ app.factory('dataRequester', function($http, $q){
             parameters += urlParams[par] + '&';
         }
 
-        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/ads' + parameters + '&pagesize=3'})
+        $http.get('http://softuni-ads.azurewebsites.net/api/ads' + parameters + '&pagesize=3')
             .success(function (data, status, headers, config) {
                 defer.resolve(data);
             })
@@ -24,7 +24,7 @@ app.factory('dataRequester', function($http, $q){
     function getCategories(){
         var defer = $q.defer();
 
-        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/categories'})
+        $http.get('http://softuni-ads.azurewebsites.net/api/categories')
             .success(function(data, status, headers, config){
                 defer.resolve(data);
             })
@@ -38,7 +38,7 @@ app.factory('dataRequester', function($http, $q){
     function getTowns(){
         var defer = $q.defer();
 
-        $http({method: 'GET', url: 'http://softuni-ads.azurewebsites.net/api/towns'})
+        $http.get('http://softuni-ads.azurewebsites.net/api/towns')
             .success(function(data, status, headers, config){
                 defer.resolve(data);
             })
