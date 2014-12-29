@@ -18,12 +18,12 @@
         <a class="navbar-brand" href="#/">Ads</a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav" ng-show="loginError">
+        <ul class="nav navbar-nav pull-right" ng-show="accessToken">
             <li><a href="#">My Ads</a></li>
             <li><a href="#">Publish New Add</a></li>
             <li><a href="#">Edit Profile</a></li>
         </ul>
-        <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav pull-right" ng-show="!accessToken">
             <li><a href="#/login">Login</a></li>
             <li><a href="#/register">Register</a></li>
         </ul>
