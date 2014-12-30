@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, dataRequester){
+app.controller('HomeController', function($scope, dataRequester, authRequester){
     dataRequester.getAds()
         .then(function(data) {
             $scope.allAds = data;

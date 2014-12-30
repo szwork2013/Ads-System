@@ -10,6 +10,10 @@ var app = angular
                 templateUrl: 'templates/login.html',
                 controller: 'LoginController'
             })
+            .when('/user/home',{
+                templateUrl: 'templates/home.html',
+                controller: 'HomeController'
+            })
             .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true);
