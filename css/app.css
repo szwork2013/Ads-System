@@ -18,3 +18,6 @@ select[multiple]{
     height: 100%;
     width: 100%;
 }
+.required-field, .color-red{
+    color: red;
+}

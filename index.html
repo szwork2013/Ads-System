@@ -22,7 +22,7 @@
             <li><a href="#">My Ads</a></li>
             <li><a href="#">Publish New Add</a></li>
             <li><a href="#">Edit Profile</a></li>
-            <li><a href="" ng-click="logout(user)">Logout</a></li>
+            <li><a href="" ng-click="logout(user)"><span class="color-red">Logout,  {{ user.userName }}.</span></a></li>
         </ul>
         <ul class="nav navbar-nav pull-right" ng-show="!user">
             <li><a href="#/login">Login</a></li>
@@ -55,5 +55,6 @@
 <script src="js/services/dataRequester.js"></script>
 <script src="js/services/authRequester.js"></script>
 <script src="js/directives/fallBackSrc.js"></script>
+<script src="js/directives/passwordMatch.js"></script>
 </body>
 </html>
