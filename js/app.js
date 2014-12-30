@@ -10,6 +10,10 @@ var app = angular
                 templateUrl: 'templates/login.html',
                 controller: 'LoginController'
             })
+            .when('/register', {
+                templateUrl: 'templates/register.html',
+                controller: 'RegisterController'
+            })
             .when('/user/home',{
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
