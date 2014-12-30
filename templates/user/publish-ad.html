@@ -9,25 +9,25 @@
                         <div class="form-group">
                             <label for="title" class="col-lg-2 control-label">Title</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="title" placeholder="Title">
+                                <input ng-model="newAd.title" type="text" class="form-control" id="title" placeholder="Title">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="text" class="col-lg-2 control-label">Text</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" id="text" placeholder="Text"></textarea>
+                                <textarea ng-model="newAd.text" class="form-control" id="text" placeholder="Text"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="image" class="col-lg-2 control-label">Image</label>
                             <div class="col-lg-10">
-                                <input type="file" class="form-control" id="image">
+                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(newAd.image[0])" ng-model="newAd.image" id="image" class="form-control">Choose Image</button>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="category" class="col-lg-2 control-label">Category</label>
                             <div class="col-lg-10">
-                                <select class="form-control" id="category">
+                                <select ng-model="newAd.categoryId" class="form-control" id="category">
                                     <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
                                 </select>
                             </div>
@@ -35,20 +35,20 @@
                         <div class="form-group">
                             <label for="town" class="col-lg-2 control-label">Town</label>
                             <div class="col-lg-10">
-                                <select class="form-control" id="town">
-                                    <option ng-repeat="town in towns" value="{{ town.id }}">{{ town.name }}</option>
+                                <select ng-model="newAd.townId" class="form-control" id="town">
+                                    <option  ng-repeat="town in towns" value="{{ town.id }}">{{ town.name }}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img id="publish-ad-img" fallback-src="images/no_image.gif" src="#">
+                        <img id="publish-ad-img" fallback-src="images/no_image.gif" ng-src="{{ image }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <a href="#/user/home"><button class="btn btn-default">Cancel</button></a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-click="submitNewAd(newAd)" type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 var app = angular
-    .module('app', ['ngRoute', 'ngCookies'])
+    .module('app', ['ngRoute', 'angularFileUpload'])
     .config(function($routeProvider){
         var isNotLogged = function($location, $window){
             if ($window.sessionStorage["userInfo"]) {
