@@ -21,3 +21,6 @@ select[multiple]{
 .required-field, .color-red{
     color: red;
 }
+#publish-ad-img{
+    height: 220px;
+}

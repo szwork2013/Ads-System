@@ -43,9 +43,11 @@
                 </div>
                 <div class="form-group">
                     <label for="town" class="col-lg-2 control-label">Town</label>
-                    <select class="col-lg-4">
-                        <option id="town" ng-repeat="town in towns" value="town.id" ng-model="user.town">{{ town.name }}</option>
-                    </select>
+                    <div class="col-lg-4">
+                        <select class="form-control">
+                            <option id="town" ng-repeat="town in towns" value="town.id" ng-model="user.town">{{ town.name }}</option>
+                        </select>
+                    </div>
                 </div>
                 <span class="help-block">
                     <p>

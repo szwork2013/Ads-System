@@ -20,7 +20,7 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav pull-right" ng-show="user">
             <li><a href="#">My Ads</a></li>
-            <li><a href="#">Publish New Add</a></li>
+            <li><a href="#/user/ads/publish">Publish New Add</a></li>
             <li><a href="#">Edit Profile</a></li>
             <li><a href="" ng-click="logout(user)"><span class="color-red">Logout,  {{ user.userName }}.</span></a></li>
         </ul>
@@ -52,6 +52,7 @@
 <script src="js/controllers/LoginController.js"></script>
 <script src="js/controllers/NavBarController.js"></script>
 <script src="js/controllers/RegisterController.js"></script>
+<script src="js/controllers/user/PublishAdController.js"></script>
 <script src="js/services/dataRequester.js"></script>
 <script src="js/services/authRequester.js"></script>
 <script src="js/directives/fallBackSrc.js"></script>

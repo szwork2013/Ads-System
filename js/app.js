@@ -14,9 +14,13 @@ var app = angular
                 templateUrl: 'templates/register.html',
                 controller: 'RegisterController'
             })
-            .when('/user/home',{
+            .when('/user/home', {
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
+            })
+            .when('/user/ads/publish', {
+                templateUrl: 'templates/user/publish-ad.html',
+                controller: 'PublishAdController'
             })
             .otherwise({redirectTo: '/'});
 
