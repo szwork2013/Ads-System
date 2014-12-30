@@ -8,4 +8,6 @@ app.controller('PublishAdController', function($scope, dataRequester){
         .then(function(data){
             $scope.towns = data;
         });
+
+
 });

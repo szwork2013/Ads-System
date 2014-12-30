@@ -39,6 +39,11 @@ var app = angular
                 controller: 'PublishAdController',
                 resolve: { isLogged: isLogged }
             })
+            .when('/user/ads', {
+                templateUrl: 'templates/user/user-ads.html',
+                controller: 'UserAdsController',
+                resolve: { isLogged: isLogged }
+            })
             .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true);

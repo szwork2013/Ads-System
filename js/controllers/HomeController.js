@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, dataRequester, authRequester){
+app.controller('HomeController', function($scope, $rootScope, dataRequester, authRequester){
     dataRequester.getAds()
         .then(function(data) {
             $scope.allAds = data;
@@ -51,5 +51,9 @@ app.controller('HomeController', function($scope, dataRequester, authRequester){
     $scope.showPage = function(num){
         $scope.urlParams['currentPage'] = 'startpage=' + num;
         urlParser();
-    }
+    };
+
+    $scope.closeMessage = function(){
+        $rootScope.successMessage = undefined;
+    };
 });
