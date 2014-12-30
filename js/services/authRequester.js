@@ -66,7 +66,7 @@ app.factory('authRequester', function($http, $q, $window, $rootScope){
                 headers: {'Authorization': 'Bearer ' + token}
             })
             .success(function (data, status, headers, config) {
-                $window.sessionStorage["userInfo"] = null;
+                $window.sessionStorage.clear();
                 userInfo = null;
                 defer.resolve(data);
             })
@@ -83,7 +83,7 @@ app.factory('authRequester', function($http, $q, $window, $rootScope){
 
     function init() {
         if ($window.sessionStorage["userInfo"]) {
-            userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+            userInfo = JSON.parse($window.sessionStorage['userInfo']);
             $rootScope.user = userInfo;
         }
     }
