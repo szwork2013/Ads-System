@@ -1,4 +1,14 @@
-app.controller('PublishAdController', function($scope, $rootScope, $timeout, $location, dataFactory, userFactory){
+app.controller('PublishAdController', function(
+    $scope,
+    $rootScope,
+    $timeout,
+    $location,
+    $window,
+    dataFactory,
+    userFactory)
+{
+    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+
     dataFactory.getCategories()
         .then(function(data){
             $scope.categories = data;
@@ -11,18 +21,16 @@ app.controller('PublishAdController', function($scope, $rootScope, $timeout, $lo
 
     $scope.submitNewAd = function(newAd){
         if (newAd.image){
-            $timeout(function() {
-                newAd.imageDataUrl = $scope.image;
-            })
+            newAd.imageDataUrl = $scope.image;
         }
 
-        userFactory.publishNewAd(newAd)
+        userFactory.publishNewAd(newAd, userInfo)
             .then(function(data){
                 $rootScope.successMessage = data.message + ' Once approved, it will be published.';
                 $location.path('/user/home');
             }, function(errer){
                 $scope.publishNewAdError = errer.modelState;
-            })
+            });
     };
 
     $scope.generateThumb = function(image){

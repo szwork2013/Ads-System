@@ -1,8 +1,7 @@
 app.factory('userFactory', function($http, $q, $window){
     var API_URL = 'http://softuni-ads.azurewebsites.net/api/user';
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
 
-    function publishNewAd(ad){
+    function publishNewAd(ad, user){
         var defer = $q.defer();
 
         $http.post(API_URL + '/ads',
@@ -15,7 +14,7 @@ app.factory('userFactory', function($http, $q, $window){
             },
             {
                 headers: {
-                    Authorization: 'Bearer ' + userInfo.token
+                    Authorization: 'Bearer ' + user.token
                 }
             })
             .success(function (data, status, headers, config) {
@@ -28,7 +27,26 @@ app.factory('userFactory', function($http, $q, $window){
         return defer.promise;
     }
 
+    function getUserAds(user){
+        var defer = $q.defer();
+
+        $http.get(API_URL + '/ads?pagesize=3', {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
-        publishNewAd: publishNewAd
+        publishNewAd: publishNewAd,
+        getUserAds: getUserAds
     }
 });
