@@ -1,27 +1,28 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-9">
-        <form class="form-horizontal">
+        <form class="form-horizontal" name="createNewAd">
             <fieldset>
                 <legend>Publish New Ad</legend>
+                <div ng-show="publishNewAdError" class="alert alert-danger" ng-repeat="error in publishNewAdError">{{ error }}</div>
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title" class="col-lg-2 control-label">Title</label>
                             <div class="col-lg-10">
-                                <input ng-model="newAd.title" type="text" class="form-control" id="title" placeholder="Title">
+                                <input ng-model="newAd.title" type="text" class="form-control" id="title" placeholder="Title" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="text" class="col-lg-2 control-label">Text</label>
                             <div class="col-lg-10">
-                                <textarea ng-model="newAd.text" class="form-control" id="text" placeholder="Text"></textarea>
+                                <textarea ng-model="newAd.text" class="form-control" id="text" placeholder="Text" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="image" class="col-lg-2 control-label">Image</label>
                             <div class="col-lg-10">
-                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(newAd.image[0])" ng-model="newAd.image" id="image" class="form-control">Choose Image</button>
+                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(newAd.image[0])" ng-model="newAd.image" id="image" class="form-control">Browse Image...</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -48,7 +49,7 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <a href="#/user/home"><button class="btn btn-default">Cancel</button></a>
-                        <button ng-click="submitNewAd(newAd)" type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-click="submitNewAd(newAd)" ng-disabled="createNewAd.$invalid" type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
 

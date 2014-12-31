@@ -1,6 +1,6 @@
-app.controller('LoginController', function($scope, $rootScope, $location, authRequester){
+app.controller('LoginController', function($scope, $rootScope, $location, authFactory){
     $scope.login = function(){
-        authRequester.loginUser($scope.user.username, $scope.user.password)
+        authFactory.loginUser($scope.user.username, $scope.user.password)
             .then(function(userInfo){
                 $rootScope.user = userInfo;
                 $rootScope.successMessage = 'Successful login!';

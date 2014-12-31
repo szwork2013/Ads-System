@@ -1,4 +1,4 @@
-app.factory('dataRequester', function($http, $q){
+app.factory('dataFactory', function($http, $q){
 
     var API_URL = 'http://softuni-ads.azurewebsites.net/api';
 

@@ -1,4 +1,4 @@
-app.factory('authRequester', function($http, $q, $window, $rootScope){
+app.factory('authFactory', function($http, $q, $window, $rootScope){
 
     var API_URL = 'http://softuni-ads.azurewebsites.net/api/user';
     var userInfo;

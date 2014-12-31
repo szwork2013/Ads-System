@@ -1,15 +1,15 @@
-app.controller('HomeController', function($scope, $rootScope, dataRequester, authRequester){
-    dataRequester.getAds()
+app.controller('HomeController', function($scope, $rootScope, dataFactory, authFactory){
+    dataFactory.getAds()
         .then(function(data) {
             $scope.allAds = data;
         });
 
-    dataRequester.getCategories()
+    dataFactory.getCategories()
         .then(function(data){
             $scope.categories = data;
         });
 
-    dataRequester.getTowns()
+    dataFactory.getTowns()
         .then(function(data){
         $scope.towns = data;
         });
@@ -38,7 +38,7 @@ app.controller('HomeController', function($scope, $rootScope, dataRequester, aut
     };
 
     function urlParser(){
-        dataRequester.getAds($scope.urlParams)
+        dataFactory.getAds($scope.urlParams)
             .then(function(data) {
                 $scope.allAds = data;
             });

@@ -1,6 +1,6 @@
-app.controller('NavBarController', function($scope, $rootScope, $location, authRequester){
+app.controller('NavBarController', function($scope, $rootScope, $location, authFactory){
     $scope.logout = function(user){
-        authRequester.logoutUser(user.token)
+        authFactory.logoutUser(user.token)
             .then(function(data){
                 $rootScope.user = undefined;
                 $rootScope.successMessage = 'Successful logout!';
