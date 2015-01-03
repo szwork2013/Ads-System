@@ -40,8 +40,24 @@
                     <hr />
                     <strong>Pages: </strong>
                     <div class="btn-group">
-                        <a href="" ng-click="showPage($index+1)" class="btn btn-default" ng-repeat="i in getNumber(userAds.numPages) track by $index">{{ $index+1 }}</a>
+                        <a href="" ng-click="getPageNumber($index+1)" class="btn btn-default" ng-repeat="i in getNumber(userAds.numPages) track by $index">{{ $index+1 }}</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <div class="list-group">
+                <h3 class="text-center"><strong>My Ads</strong></h3>
+                <div>
+                    <select multiple>
+                        <option class="list-group-item" ng-click="getAdByStatus('')">All</option>
+                        <option class="list-group-item" ng-click="getAdByStatus('Published')">Published</option>
+                        <option class="list-group-item" ng-click="getAdByStatus('WaitingApproval')">Waiting Approval</option>
+                        <option class="list-group-item" ng-click="getAdByStatus('Inactive')">Inactive</option>
+                        <option class="list-group-item" ng-click="getAdByStatus('Rejected')">Rejected</option>
+                    </select>
                 </div>
             </div>
         </div>

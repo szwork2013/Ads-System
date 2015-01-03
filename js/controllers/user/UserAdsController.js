@@ -28,8 +28,21 @@ app.controller('UserAdsController', function($scope, $window, userFactory){
         return new Array(number);
     };
 
-    $scope.showPage = function(page){
-        userFactory.getUserAds(userInfo, page)
+    $scope.urlParams = [];
+
+    $scope.getPageNumber = function(page){
+        $scope.urlParams['currentPage'] = 'startpage=' + page;
+        urlParser();
+    };
+
+    $scope.getAdByStatus = function(status){
+        $scope.urlParams['status'] = 'status=' + status;
+        delete $scope.urlParams['currentPage'];
+        urlParser();
+    };
+
+    function urlParser(){
+        userFactory.getUserAds(userInfo, $scope.urlParams)
             .then(function(data){
                 $scope.userAds = data;
             }, function(error){
