@@ -1,4 +1,4 @@
-app.controller('UserAdsController', function($scope, $window, userFactory){
+app.controller('UserAdsController', function($scope, $rootScope, $window, userFactory){
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
     console.log(userInfo);
 
@@ -49,4 +49,30 @@ app.controller('UserAdsController', function($scope, $window, userFactory){
                 console.log(error);
             });
     }
+
+    $scope.deactivateAd = function(ad){
+        userFactory.deactivateAd(userInfo, ad.id)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                urlParser();
+                console.log(data);
+            }, function(error){
+                console.log(error);
+            });
+    };
+
+    $scope.publishAgainAd = function(ad){
+        userFactory.publishAgainAd(userInfo, ad.id)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                urlParser();
+                console.log(data);
+            }, function(error){
+                console.log(error);
+            });
+    }
+
+    $scope.closeMessage = function(){
+        $rootScope.successMessage = undefined;
+    };
 });
