@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-12" ng-repeat="ad in userAds.ads">
                 <hr />
-                <h3><strong>{{ ad.title }}</strong><span class="pull-right">{{ ad.date | date}}</span></h3>
+                <h3><strong>{{ ad.title }} </strong><small> (Ad ID: {{ ad.id }})</small> <span class="pull-right">{{ ad.date | date}}</span></h3>
                 <div class="col-md-3">
                     <img class="img-thumbnail pull-left" fallback-src="images/no_image.gif" src="{{ ad.imageDataUrl }}">
                 </div>
@@ -32,7 +32,7 @@
                     <div>
                         <div class="pull-right">
                             <a ng-show="adStatusButtons(ad)" ng-click="deactivateAd(ad)" class="btn btn-warning btn-xs">Deactivate</a>
-                            <a ng-show="!adStatusButtons(ad)"  class="btn btn-warning btn-xs">Edit</a>
+                            <a ng-show="!adStatusButtons(ad)" href="#/user/ads/edit/{{ ad.id }}" class="btn btn-warning btn-xs">Edit</a>
                             <a ng-show="!adStatusButtons(ad)" ng-click="publishAgainAd(ad)" class="btn btn-warning btn-xs">Publish Again</a>
                             <a ng-show="!adStatusButtons(ad)" ng-click="confirmDeletion(ad)" class="btn btn-danger btn-xs">Delete</a>
                         </div>

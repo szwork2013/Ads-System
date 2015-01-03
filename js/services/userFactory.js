@@ -105,11 +105,58 @@ app.factory('userFactory', function($http, $q, $window){
         return defer.promise;
     }
 
+    function getAdBuId(user, id){
+        var defer = $q.defer();
+
+        $http.get(API_URL + '/ads/' + id, {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
+    function editAd(user, ad){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/ads/' + ad.id,
+            {
+                title: ad.title,
+                text: ad.text,
+                changeimage: false,
+                ImageDataURL: ad.imageDataURL,
+                categoryid: ad.categoryId,
+                townid: ad.townId
+            },
+            {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         publishNewAd: publishNewAd,
         getUserAds: getUserAds,
         deactivateAd: deactivateAd,
         publishAgainAd: publishAgainAd,
-        deleteAd: deleteAd
+        deleteAd: deleteAd,
+        getAdBuId: getAdBuId,
+        editAd: editAd
     }
 });
