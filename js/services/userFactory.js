@@ -27,10 +27,17 @@ app.factory('userFactory', function($http, $q, $window){
         return defer.promise;
     }
 
-    function getUserAds(user){
+    function getUserAds(user, page){
         var defer = $q.defer();
 
-        $http.get(API_URL + '/ads?pagesize=3', {
+        if (page){
+            page = '&startpage=' + page;
+        }
+        else {
+            page = '';
+        }
+
+        $http.get(API_URL + '/ads?pagesize=3' + page, {
             headers: {
                 Authorization: 'Bearer ' + user.token
             }

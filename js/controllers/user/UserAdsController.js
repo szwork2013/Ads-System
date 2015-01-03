@@ -27,4 +27,13 @@ app.controller('UserAdsController', function($scope, $window, userFactory){
     $scope.getNumber = function(number){
         return new Array(number);
     };
+
+    $scope.showPage = function(page){
+        userFactory.getUserAds(userInfo, page)
+            .then(function(data){
+                $scope.userAds = data;
+            }, function(error){
+                console.log(error);
+            });
+    }
 });

@@ -27,7 +27,7 @@ app.controller('PublishAdController', function(
         userFactory.publishNewAd(newAd, userInfo)
             .then(function(data){
                 $rootScope.successMessage = data.message + ' Once approved, it will be published.';
-                $location.path('/user/home');
+                $location.path('/user/ads');
             }, function(errer){
                 $scope.publishNewAdError = errer.modelState;
             });
