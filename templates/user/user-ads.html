@@ -30,7 +30,7 @@
                             <a ng-show="adStatusButtons(ad)" ng-click="deactivateAd(ad)" class="btn btn-warning btn-xs">Deactivate</a>
                             <a ng-show="!adStatusButtons(ad)"  class="btn btn-warning btn-xs">Edit</a>
                             <a ng-show="!adStatusButtons(ad)" ng-click="publishAgainAd(ad)" class="btn btn-warning btn-xs">Publish Again</a>
-                            <a ng-show="!adStatusButtons(ad)" href="#" class="btn btn-danger btn-xs">Delete</a>
+                            <a ng-show="!adStatusButtons(ad)" ng-click="deleteAd(ad)" class="btn btn-danger btn-xs">Delete</a>
                         </div>
                     </div>
                 </div>

@@ -87,10 +87,29 @@ app.factory('userFactory', function($http, $q, $window){
         return defer.promise;
     }
 
+    function deleteAd(user, id){
+        var defer = $q.defer();
+
+        $http.delete(API_URL + '/ads/' + id, {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         publishNewAd: publishNewAd,
         getUserAds: getUserAds,
         deactivateAd: deactivateAd,
-        publishAgainAd: publishAgainAd
+        publishAgainAd: publishAgainAd,
+        deleteAd: deleteAd
     }
 });

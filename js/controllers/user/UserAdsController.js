@@ -55,7 +55,6 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
             .then(function(data){
                 $rootScope.successMessage = data.message;
                 urlParser();
-                console.log(data);
             }, function(error){
                 console.log(error);
             });
@@ -66,11 +65,20 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
             .then(function(data){
                 $rootScope.successMessage = data.message;
                 urlParser();
-                console.log(data);
             }, function(error){
                 console.log(error);
             });
-    }
+    };
+
+    $scope.deleteAd = function(ad){
+        userFactory.deleteAd(userInfo, ad.id)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                urlParser();
+            }, function(error){
+                console.log(error);
+            });
+    };
 
     $scope.closeMessage = function(){
         $rootScope.successMessage = undefined;
