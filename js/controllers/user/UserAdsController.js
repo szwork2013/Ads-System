@@ -78,7 +78,7 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
             }, function(error){
                 console.log(error);
             });
-    };
+    }
 
     $scope.confirmDeletion = function(ad){
         createDialog('../../templates/delete-ad-confirmation.html',{

@@ -4,6 +4,10 @@
 <div class="row">
     <div class="col-md-9" >
         <div class="row">
+            <div class="col-lg-12" ng-show="userAds.numItems == 0">
+                <hr />
+                <h2>No ads</h2>
+            </div>
             <div class="col-lg-12" ng-repeat="ad in userAds.ads">
                 <hr />
                 <h3><strong>{{ ad.title }}</strong><span class="pull-right">{{ ad.date | date}}</span></h3>
@@ -36,11 +40,11 @@
                 </div>
             </div>
             <div>
-                <div class="pull-right">
+                <div class="pull-right" ng-show="userAds.numItems != 0">
                     <hr />
                     <strong>Pages: </strong>
                     <div class="btn-group">
-                        <a href="" ng-click="getPageNumber($index+1)" class="btn btn-default" ng-repeat="i in getNumber(userAds.numPages) track by $index">{{ $index+1 }}</a>
+                        <a ng-click="getPageNumber($index+1)" class="btn btn-default" ng-repeat="i in getNumber(userAds.numPages) track by $index">{{ $index+1 }}</a>
                     </div>
                 </div>
             </div>
