@@ -1,4 +1,4 @@
-app.controller('UserAdsController', function($scope, $rootScope, $window, userFactory){
+app.controller('UserAdsController', function($scope, $rootScope, $window, userFactory, createDialog){
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
     console.log(userInfo);
 
@@ -70,7 +70,7 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
             });
     };
 
-    $scope.deleteAd = function(ad){
+    function deleteAd(ad){
         userFactory.deleteAd(userInfo, ad.id)
             .then(function(data){
                 $rootScope.successMessage = data.message;
@@ -78,6 +78,19 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
             }, function(error){
                 console.log(error);
             });
+    };
+
+    $scope.confirmDeletion = function(ad){
+        createDialog('../../templates/delete-ad-confirmation.html',{
+            id : 'simpleDialog',
+            title: 'Confirm deletion',
+            backdrop: true,
+            success: {
+                label: 'DELETE',fn: function(){
+                    deleteAd(ad);
+                }
+            }
+        });
     };
 
     $scope.closeMessage = function(){

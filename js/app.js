@@ -1,5 +1,5 @@
 var app = angular
-    .module('app', ['ngRoute', 'angularFileUpload'])
+    .module('app', ['ngRoute', 'angularFileUpload', 'fundoo.services'])
     .config(function($routeProvider){
         var isNotLogged = function($location, $window){
             if ($window.sessionStorage["userInfo"]) {
