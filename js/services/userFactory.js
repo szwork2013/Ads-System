@@ -130,8 +130,8 @@ app.factory('userFactory', function($http, $q, $window){
             {
                 title: ad.title,
                 text: ad.text,
-                changeimage: false,
-                ImageDataURL: ad.imageDataURL,
+                changeimage: ad.changeImage,
+                ImageDataURL: ad.imageDataUrl,
                 categoryid: ad.categoryId,
                 townid: ad.townId
             },

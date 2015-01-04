@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="image" class="col-lg-2 control-label">Image</label>
                             <div class="col-lg-10">
-                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(newAd.image[0])" ng-model="ad.image" id="image" class="form-control">Browse Image...</button>
+                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(ad)" ng-model="ad.image" id="image" class="form-control">Change Image...</button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,7 +43,8 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img id="publish-ad-img" ng-src="{{ image }}">
+                        <img id="publish-ad-img" src="{{ ad.imageDataUrl }}"">
+                        <button class="form-control" ng-click="deleteAdImage(ad)"><span class="color-red">Delete Image</span></button>
                     </div>
                 </div>
                 <span class="help-block">
@@ -54,7 +55,7 @@
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <a href="#/user/ads"><button class="btn btn-default">Cancel</button></a>
-                        <button ng-click="asdfg(ad)" ng-disabled="editAd.$invalid"  type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-click="editAdBtn(ad)" ng-disabled="editAd.$invalid"  type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </fieldset>

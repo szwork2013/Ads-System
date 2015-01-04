@@ -2,6 +2,7 @@ app.controller('EditAdController', function(
     $scope,
     $rootScope,
     $routeParams,
+    $timeout,
     $window,
     $location,
     userFactory,
@@ -26,13 +27,38 @@ app.controller('EditAdController', function(
             console.log(error);
         });
 
-    $scope.asdfg = function(ad){
+    $scope.editAdBtn = function(ad){
+        if (ad.image){
+            ad.imageDataUrl = $scope.image;
+        }
+
         userFactory.editAd(userInfo, ad)
             .then(function(data){
-                $rootScope.successMessage = data.message;
+                $rootScope.successMessage = data.message + ' Don\'t forget to submit it for publishing.';
                 $location.path('/user/ads');
             }, function(error){
                 $scope.editAdError = error.modelState;
             })
+    };
+
+    $scope.generateThumb = function(ad){
+        var image = ad.image[0];
+        ad.changeImage = true;
+        var fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent)
+        {
+            $timeout(function(){
+                $scope.image = fileLoadedEvent.target.result;
+                ad.imageDataUrl = $scope.image;
+            });
+        };
+
+        fileReader.readAsDataURL(image);
+    };
+
+    $scope.deleteAdImage = function(ad){
+        ad.changeImage = true;
+        ad.imageDataUrl = null;
+        $scope.image = null;
     }
 });

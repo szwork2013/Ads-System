@@ -1,11 +1,11 @@
-app.controller('RegisterController', function($scope, $rootScope, dataRequester, $location, authRequester){
-    dataRequester.getTowns()
+app.controller('RegisterController', function($scope, $rootScope, dataFactory, $location, authFactory){
+    dataFactory.getTowns()
         .then(function(data){
             $scope.towns = data;
         });
 
     $scope.registerUser = function(user){
-        authRequester.registerUser(user)
+        dataFactory.registerUser(user)
             .then(function(data){
                 authRequester.loginAfterRegistration(data);
                 $rootScope.successMessage = 'Successful registration and login!';
