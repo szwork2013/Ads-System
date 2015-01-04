@@ -19,6 +19,7 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav pull-right" ng-show="user">
+            <li></li>
             <li><a href="#/user/home">Home</a></li>
             <li><a href="#/user/ads">My Ads</a></li>
             <li><a href="#/user/ads/publish">Publish New Add</a></li>
@@ -31,6 +32,7 @@
         </ul>
     </div>
 </div>
+<img data-loading-animation class="center-block loading-animation" src="http://chimplyimage.appspot.com/images/samples/classic-spinner/indicator.gif" />
 <div id="min-height" class="container" ng-view="">
 
 </div>
@@ -61,6 +63,7 @@
 <script src="js/services/dataFactory.js"></script>
 <script src="js/services/authFactory.js"></script>
 <script src="js/services/userFactory.js"></script>
+<script src="js/directives/loadingAnimation.js"></script>
 <script src="js/directives/fallBackSrc.js"></script>
 <script src="js/directives/passwordMatch.js"></script>
 </body>
