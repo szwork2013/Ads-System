@@ -1,6 +1,5 @@
 app.controller('UserAdsController', function($scope, $rootScope, $window, userFactory, createDialog){
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
-    console.log(userInfo);
 
     userFactory.getUserAds(userInfo)
         .then(function(data){

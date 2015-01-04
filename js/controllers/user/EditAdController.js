@@ -22,7 +22,6 @@ app.controller('EditAdController', function(
     userFactory.getAdBuId(userInfo, $routeParams.id)
         .then(function(data){
             $scope.ad = data;
-            console.log(data);
         }, function(error){
             console.log(error);
         });

@@ -49,6 +49,11 @@ var app = angular
                 controller: 'EditAdController',
                 resolve: { isLogged: isLogged }
             })
+            .when('/user/profile', {
+                templateUrl: 'templates/user/edit-user-profile.html',
+                controller: 'EditUserProfileController',
+                resolve: { isLogged: isLogged }
+            })
             .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true);

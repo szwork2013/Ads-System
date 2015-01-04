@@ -22,7 +22,7 @@
             <li><a href="#/user/home">Home</a></li>
             <li><a href="#/user/ads">My Ads</a></li>
             <li><a href="#/user/ads/publish">Publish New Add</a></li>
-            <li><a href="#">Edit Profile</a></li>
+            <li><a href="#/user/profile">Edit Profile</a></li>
             <li><a href="" ng-click="logout(user)"><span class="color-red">Logout,  {{ user.userName }}.</span></a></li>
         </ul>
         <ul class="nav navbar-nav pull-right" ng-show="!user">
@@ -57,6 +57,7 @@
 <script src="js/controllers/user/PublishAdController.js"></script>
 <script src="js/controllers/user/UserAdsController.js"></script>
 <script src="js/controllers/user/EditAdController.js"></script>
+<script src="js/controllers/user/EditUserProfileController.js"></script>
 <script src="js/services/dataFactory.js"></script>
 <script src="js/services/authFactory.js"></script>
 <script src="js/services/userFactory.js"></script>

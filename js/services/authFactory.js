@@ -77,6 +77,24 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         return defer.promise;
     }
 
+    function getUser(user){
+        var defer = $q.defer();
+
+        $http.get(API_URL + '/profile', {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     function getUserInfo() {
         return userInfo;
     }
@@ -95,6 +113,7 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         loginAfterRegistration: loginAfterRegistration,
         loginUser: loginUser,
         getUserInfo: getUserInfo,
-        logoutUser: logoutUser
+        logoutUser: logoutUser,
+        getUser: getUser
     }
 });

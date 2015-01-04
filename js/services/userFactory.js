@@ -1,4 +1,4 @@
-app.factory('userFactory', function($http, $q, $window){
+app.factory('userFactory', function($http, $q){
     var API_URL = 'http://softuni-ads.azurewebsites.net/api/user';
 
     function publishNewAd(ad, user){
