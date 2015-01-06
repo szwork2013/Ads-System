@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-12" ng-repeat="ad in allAds.ads">
                 <hr />
-                <h3><strong>{{ ad.title }}</strong><span class="pull-right">{{ ad.date | date}}</span></h3>
+                <h3><strong>{{ ad.title }}</strong><small>  (Ad ID: {{ ad.id }})</small><span class="pull-right">{{ ad.date | date}}</span></h3>
                 <div class="col-md-3">
                     <img class="img-thumbnail pull-left" fallback-src="images/no_image.gif" src="{{ ad.imageDataUrl }}">
                 </div>
@@ -19,6 +19,9 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Status: </strong> <span class="pull-right">{{ ad.status }}</span>
+                        </li>
                         <li class="list-group-item">
                             <strong>Name: </strong> <span class="pull-right">{{ ad.ownerName }}</span>
                         </li>
@@ -29,6 +32,14 @@
                             <strong>Phone: </strong> <span class="pull-right">{{ ad.ownerPhone }}</span>
                         </li>
                     </ul>
+                    <div>
+                        <div class="pull-right">
+                            <a ng-click="approveAd(ad)" class="btn btn-success btn-xs">Approve</a>
+                            <a ng-click="rejectAd(ad)" class="btn btn-warning btn-xs">Reject</a>
+                            <a href="#/admin/ads/edit/{{ ad.id }}" class="btn btn-warning btn-xs">Edit</a>
+                            <a ng-click="confirmDeletion(ad)" class="btn btn-danger btn-xs">Delete</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

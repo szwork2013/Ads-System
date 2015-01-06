@@ -55,5 +55,29 @@ app.controller('AllAdsController', function($scope, $window, adminAdsFactory, da
             });
     }
 
+    $scope.approveAd = function(ad){
+        adminAdsFactory.approveAd(userInfo, ad)
+            .then(function(data){
+                $scope.successMessage = data.message;
+                urlParser();
+            }, function(error){
+                console.log(error);
+            })
+    };
+
+    $scope.rejectAd = function(ad){
+        adminAdsFactory.rejectAd(userInfo, ad)
+            .then(function(data){
+                $scope.successMessage = data.message;
+                urlParser();
+            }, function(error){
+                console.log(error);
+            })
+    };
+
+    $scope.closeMessage = function(){
+        $scope.successMessage = undefined;
+    };
+
     urlParser();
 });

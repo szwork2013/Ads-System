@@ -26,7 +26,45 @@ app.factory('adminAdsFactory', function($http, $q){
         return defer.promise;
     }
 
+    function approveAd(user, ad){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/ads/approve/' + ad.id, '', {
+            headers: {
+                Authorization: 'Bearer ' + user.access_token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
+    function rejectAd(user, ad){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/ads/reject/' + ad.id, '', {
+            headers: {
+                Authorization: 'Bearer ' + user.access_token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
-        getAds: getAds
+        getAds: getAds,
+        approveAd: approveAd,
+        rejectAd: rejectAd
     }
 });
