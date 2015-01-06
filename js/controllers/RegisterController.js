@@ -5,9 +5,9 @@ app.controller('RegisterController', function($scope, $rootScope, dataFactory, $
         });
 
     $scope.registerUser = function(user){
-        dataFactory.registerUser(user)
+        authFactory.registerUser(user)
             .then(function(data){
-                authRequester.loginAfterRegistration(data);
+                authFactory.loginAfterRegistration(data);
                 $rootScope.successMessage = 'Successful registration and login!';
                 $location.path('/user/home');
             }, function(error){

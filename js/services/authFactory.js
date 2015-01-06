@@ -27,10 +27,7 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
     }
 
     function loginAfterRegistration(data){
-        userInfo = {
-            userName: data.username,
-            token: data.access_token
-        };
+        userInfo = data;
         $window.sessionStorage['userInfo'] = JSON.stringify(userInfo);
         $rootScope.user = userInfo;
     }

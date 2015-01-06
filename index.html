@@ -20,7 +20,7 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <span ng-if="!user" ng-include="'/templates/navBars/default-navbar.html'"></span>
         <span ng-if="user && !user.isAdmin" ng-include="'/templates/navBars/user-navbar.html'"></span>
-        <span ng-include="'/templates/navBars/admin-navbar.html'"></span>
+        <span ng-if="user && user.isAdmin" ng-include="'/templates/navBars/admin-navbar.html'"></span>
     </div>
 </div>
 <img data-loading-animation class="center-block loading-animation" src="http://chimplyimage.appspot.com/images/samples/classic-spinner/indicator.gif" />
