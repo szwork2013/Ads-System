@@ -31,9 +31,9 @@
                     </ul>
                     <div>
                         <div class="pull-right">
-                            <a ng-show="adStatusButtons(ad)" ng-click="deactivateAd(ad)" class="btn btn-warning btn-xs">Deactivate</a>
+                            <a ng-show="adStatusButtons(ad)" scrollup ng-click="deactivateAd(ad)" class="btn btn-warning btn-xs">Deactivate</a>
                             <a ng-show="!adStatusButtons(ad)" href="#/user/ads/edit/{{ ad.id }}" class="btn btn-warning btn-xs">Edit</a>
-                            <a ng-show="!adStatusButtons(ad)" ng-click="publishAgainAd(ad)" class="btn btn-warning btn-xs">Publish Again</a>
+                            <a ng-show="!adStatusButtons(ad)" scrollup ng-click="publishAgainAd(ad)" class="btn btn-warning btn-xs">Publish Again</a>
                             <a ng-show="!adStatusButtons(ad)" ng-click="confirmDeletion(ad)" class="btn btn-danger btn-xs">Delete</a>
                         </div>
                     </div>
@@ -58,11 +58,11 @@
         </div>
     </div>
     <div class="col-md-9">
-        <paging
+        <paging scrollup
                 class="small pull-right"
                 page="currentPage"
                 page-size="3"
-                total=userAds.numPages
+                total=userAds.numItems
                 paging-action="showPage('Paging Clicked', page)">
         </paging>
     </div>

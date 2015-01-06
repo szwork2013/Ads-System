@@ -35,7 +35,7 @@ angular.module('fundoo.services', []).factory('createDialog', ["$document", "$co
             var key;
             var idAttr = options.id ? ' id="' + options.id + '" ' : '';
             var defaultFooter = '<button class="btn" ng-click="$modalCancel()">{{$modalCancelLabel}}</button>' +
-                '<button class="btn btn-danger" ng-click="$modalSuccess()">{{$modalSuccessLabel}}</button>';
+                '<button class="btn btn-danger" scrollup ng-click="$modalSuccess()">{{$modalSuccessLabel}}</button>';
             var footerTemplate = '<div class="modal-footer">' +
                 (options.footerTemplate || defaultFooter) +
                 '</div>';
