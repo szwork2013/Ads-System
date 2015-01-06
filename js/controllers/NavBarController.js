@@ -1,4 +1,5 @@
-app.controller('NavBarController', function($scope, $rootScope, $location, authFactory){
+app.controller('NavBarController', function($scope, $rootScope, $location, $window, authFactory){
+
     $scope.logout = function(user){
         authFactory.logoutUser(user)
             .then(function(data){
@@ -6,5 +7,9 @@ app.controller('NavBarController', function($scope, $rootScope, $location, authF
                 $rootScope.successMessage = 'Successful logout!';
                 $location.path('#/');
             });
+    };
+
+    $scope.openPage = function(page){
+
     }
 });

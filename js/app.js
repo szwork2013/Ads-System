@@ -13,6 +13,13 @@ var app = angular
             }
         };
 
+        var isAdmin = function($location, $window){
+            var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+            if (!userInfo.isAdmin) {
+                $location.path('/');
+            }
+        };
+
         $routeProvider
             .when('/', {
                 templateUrl: 'templates/home.html',
@@ -53,6 +60,11 @@ var app = angular
                 templateUrl: 'templates/user/edit-user-profile.html',
                 controller: 'EditUserProfileController',
                 resolve: { isLogged: isLogged }
+            })
+            .when('/admin/home', {
+                templateUrl: 'templates/admin/admin-home.html',
+                controller: 'AdminHomeController',
+                resolve: { isLogged: isAdmin }
             })
             .otherwise({redirectTo: '/'});
 

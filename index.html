@@ -18,18 +18,9 @@
         <a class="navbar-brand" href="#/">Ads</a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav pull-right" ng-show="user">
-            <li></li>
-            <li><a href="#/user/home">Home</a></li>
-            <li><a href="#/user/ads">My Ads</a></li>
-            <li><a href="#/user/ads/publish">Publish New Add</a></li>
-            <li><a href="#/user/profile">Edit Profile</a></li>
-            <li><a href="" ng-click="logout(user)"><span class="color-red">Logout,  {{ user.userName }}.</span></a></li>
-        </ul>
-        <ul class="nav navbar-nav pull-right" ng-show="!user">
-            <li><a href="#/login">Login</a></li>
-            <li><a href="#/register">Register</a></li>
-        </ul>
+        <span ng-if="!user" ng-include="'/templates/navBars/default-navbar.html'"></span>
+        <span ng-if="user && !user.isAdmin" ng-include="'/templates/navBars/user-navbar.html'"></span>
+        <span ng-include="'/templates/navBars/admin-navbar.html'"></span>
     </div>
 </div>
 <img data-loading-animation class="center-block loading-animation" src="http://chimplyimage.appspot.com/images/samples/classic-spinner/indicator.gif" />
@@ -60,6 +51,7 @@
 <script src="js/controllers/user/UserAdsController.js"></script>
 <script src="js/controllers/user/EditAdController.js"></script>
 <script src="js/controllers/user/EditUserProfileController.js"></script>
+<script src="js/controllers/admin/AdminHomeController.js"></script>
 <script src="js/services/dataFactory.js"></script>
 <script src="js/services/authFactory.js"></script>
 <script src="js/services/userFactory.js"></script>

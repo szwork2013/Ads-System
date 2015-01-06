@@ -4,7 +4,12 @@ app.controller('LoginController', function($scope, $rootScope, $location, authFa
             .then(function(userInfo){
                 $rootScope.user = userInfo;
                 $rootScope.successMessage = 'Successful login!';
-                $location.path('/user/home');
+                if (userInfo.isAdmin){
+                    $location.path('/admin/home');
+                }
+                else {
+                    $location.path('/user/home');
+                }
             }, function(error){
                 $scope.loginError = error.error_description;
             })
