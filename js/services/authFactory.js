@@ -95,6 +95,45 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         return defer.promise;
     }
 
+    function editUser(user, data){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/profile',{
+            name: data.name,
+            email: data.email,
+            phoneNumber: data.phoneNumber,
+            townid: data.townId
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
+    function changePassword(user, data){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/changepassword', {
+            oldPassword: data.oldPassword,
+            newPassword: data.newPassword,
+            confirmPassword: data.confirmPassword
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + user.token
+            }
+        });
+
+        return defer.promise;
+    }
+
     function getUserInfo() {
         return userInfo;
     }
@@ -114,6 +153,8 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         loginUser: loginUser,
         getUserInfo: getUserInfo,
         logoutUser: logoutUser,
-        getUser: getUser
+        getUser: getUser,
+        editUser: editUser,
+        changePassword: changePassword
     }
 });

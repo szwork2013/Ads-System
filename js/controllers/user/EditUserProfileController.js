@@ -9,16 +9,30 @@ app.controller('EditUserProfileController', function($scope, $window, dataFactor
     authFactory.getUser(userInfo)
         .then(function(data){
             $scope.user = data;
-            console.log(data);
         }, function(error){
             console.log(error);
         });
 
-    $scope.editUser = function(user){
-        console.log(user);
+    $scope.editUser = function(data){
+        authFactory.editUser(userInfo, data)
+            .then(function(data){
+                $scope.successMessage = data.message;
+            }, function(error){
+                $scope.editProfileError = error.modelState;
+            })
     };
 
     $scope.changePassword = function(password){
-        console.log(password);
-    }
+        authFactory.changePassword(userInfo, password)
+            .then(function(data){
+                $scope.successMessage = data.message;
+            }, function(error){
+                $scope.editProfileError = error.modelState;
+            })
+
+    };
+
+    $scope.closeMessage = function(){
+        $scope.successMessage = undefined;
+    };
 });

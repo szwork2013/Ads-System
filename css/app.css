@@ -25,6 +25,7 @@ select[multiple]{
     height: 220px;
 }
 .loading-animation{
+    z-index: 9999;
     position: fixed;
     top: 50%;
     left: 50%;
