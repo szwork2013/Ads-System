@@ -44,12 +44,8 @@ app.controller('HomeController', function($scope, $rootScope, dataFactory, authF
             });
     }
 
-    $scope.getNumber = function(number){
-        return new Array(number);
-    };
-
-    $scope.showPage = function(num){
-        $scope.urlParams['currentPage'] = 'startpage=' + num;
+    $scope.showPage = function(text, page){
+        $scope.urlParams['currentPage'] = 'startpage=' + page;
         urlParser();
     };
 

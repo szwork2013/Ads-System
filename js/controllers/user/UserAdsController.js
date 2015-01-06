@@ -23,8 +23,9 @@ app.controller('UserAdsController', function($scope, $rootScope, $window, userFa
         return result;
     };
 
-    $scope.getNumber = function(number){
-        return new Array(number);
+    $scope.showPage = function(text, page){
+        $scope.urlParams['currentPage'] = 'startpage=' + page;
+        urlParser();
     };
 
     $scope.urlParams = [];

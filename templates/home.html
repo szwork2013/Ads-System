@@ -57,13 +57,13 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9" ng-show="allAds.numItems != 0">
-        <div class="pull-right">
-            <hr />
-            <strong>Pages: </strong>
-            <div class="btn-group">
-                <a ng-click="showPage($index+1)" class="btn btn-default" ng-repeat="i in getNumber(allAds.numPages) track by $index">{{ $index+1 }}</a>
-            </div>
-        </div>
+    <div class="col-md-9">
+        <paging
+                class="small pull-right"
+                page="currentPage"
+                page-size="3"
+                total=allAds.numPages
+                paging-action="showPage('Paging Clicked', page)">
+        </paging>
     </div>
 </div>
