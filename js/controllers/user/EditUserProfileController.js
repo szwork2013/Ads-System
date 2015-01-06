@@ -1,4 +1,11 @@
-app.controller('EditUserProfileController', function($scope, $window, dataFactory, authFactory){
+app.controller('EditUserProfileController', function(
+    $scope,
+    $rootScope,
+    $window,
+    $location,
+    dataFactory,
+    authFactory) {
+
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
 
     dataFactory.getTowns()
@@ -16,23 +23,22 @@ app.controller('EditUserProfileController', function($scope, $window, dataFactor
     $scope.editUser = function(data){
         authFactory.editUser(userInfo, data)
             .then(function(data){
-                $scope.successMessage = data.message;
+                $rootScope.successMessage = data.message;
+                $location.path('/user/home');
             }, function(error){
                 $scope.editProfileError = error.modelState;
             })
     };
 
     $scope.changePassword = function(password){
+        console.log(password);
         authFactory.changePassword(userInfo, password)
             .then(function(data){
-                $scope.successMessage = data.message;
+                $rootScope.successMessage = data.message;
+                $location.path('/user/home');
             }, function(error){
-                $scope.editProfileError = error.modelState;
+                $scope.editProfilePasswordError = error.modelState;
             })
 
-    };
-
-    $scope.closeMessage = function(){
-        $scope.successMessage = undefined;
     };
 });

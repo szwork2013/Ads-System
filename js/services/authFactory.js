@@ -129,7 +129,13 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
             headers: {
                 Authorization: 'Bearer ' + user.token
             }
-        });
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
 
         return defer.promise;
     }
