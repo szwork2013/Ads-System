@@ -66,6 +66,11 @@ var app = angular
                 controller: 'AdminHomeController',
                 resolve: { isLogged: isAdmin }
             })
+            .when('/admin/ads', {
+                templateUrl: 'templates/admin/all-ads.html',
+                controller: 'AllAdsController',
+                resolve: { isLogged: isAdmin }
+            })
             .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true);

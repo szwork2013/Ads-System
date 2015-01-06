@@ -8,8 +8,4 @@ app.controller('NavBarController', function($scope, $rootScope, $location, $wind
                 $location.path('#/');
             });
     };
-
-    $scope.openPage = function(page){
-
-    }
 });
