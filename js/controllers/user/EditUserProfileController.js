@@ -31,7 +31,6 @@ app.controller('EditUserProfileController', function(
     };
 
     $scope.changePassword = function(password){
-        console.log(password);
         authFactory.changePassword(userInfo, password)
             .then(function(data){
                 $rootScope.successMessage = data.message;

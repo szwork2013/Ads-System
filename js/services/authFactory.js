@@ -44,10 +44,7 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
                 password: pass
             })
             .success(function (data, status, headers, config) {
-                userInfo = {
-                    userName: data.username,
-                    token: data.access_token
-                };
+                userInfo = data;
                 $window.sessionStorage['userInfo'] = JSON.stringify(userInfo);
                 defer.resolve(userInfo);
             })
@@ -58,12 +55,12 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         return defer.promise;
     }
 
-    function logoutUser(token){
+    function logoutUser(user){
         var defer = $q.defer();
 
         $http.post(API_URL + '/logout', '',
             {
-                headers: {'Authorization': 'Bearer ' + token}
+                headers: {'Authorization': 'Bearer ' + user.access_token}
             })
             .success(function (data, status, headers, config) {
                 $window.sessionStorage.clear();
@@ -82,7 +79,7 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
 
         $http.get(API_URL + '/profile', {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -105,7 +102,7 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
             townid: data.townId
         }, {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -118,16 +115,16 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         return defer.promise;
     }
 
-    function changePassword(user, data){
+    function changePassword(user, pass){
         var defer = $q.defer();
 
-        $http.put(API_URL + '/changepassword', {
-            oldPassword: data.oldPassword,
-            newPassword: data.newPassword,
-            confirmPassword: data.confirmPassword
+        $http.put(API_URL + '/changePassword', {
+            oldPassword: pass.oldPassword,
+            newPassword: pass.newPassword,
+            confirmPassword: pass.confirmPassword
         }, {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {

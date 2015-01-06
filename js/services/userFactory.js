@@ -14,7 +14,7 @@ app.factory('userFactory', function($http, $q){
             },
             {
                 headers: {
-                    Authorization: 'Bearer ' + user.token
+                    Authorization: 'Bearer ' + user.access_token
                 }
             })
             .success(function (data, status, headers, config) {
@@ -38,7 +38,7 @@ app.factory('userFactory', function($http, $q){
 
         $http.get(API_URL + '/ads?pagesize=3' + parameters, {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -56,7 +56,7 @@ app.factory('userFactory', function($http, $q){
 
         $http.put(API_URL + '/ads/deactivate/' + id, '', {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -74,7 +74,7 @@ app.factory('userFactory', function($http, $q){
 
         $http.put(API_URL + '/ads/publishagain/' + id, '', {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -92,7 +92,7 @@ app.factory('userFactory', function($http, $q){
 
         $http.delete(API_URL + '/ads/' + id, {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -110,7 +110,7 @@ app.factory('userFactory', function($http, $q){
 
         $http.get(API_URL + '/ads/' + id, {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
@@ -137,7 +137,7 @@ app.factory('userFactory', function($http, $q){
             },
             {
             headers: {
-                Authorization: 'Bearer ' + user.token
+                Authorization: 'Bearer ' + user.access_token
             }
         })
             .success(function (data, status, headers, config) {
