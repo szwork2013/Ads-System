@@ -145,7 +145,6 @@ app.factory('authFactory', function($http, $q, $window, $rootScope){
         if ($window.sessionStorage["userInfo"]) {
             userInfo = JSON.parse($window.sessionStorage['userInfo']);
             $rootScope.user = userInfo;
-            console.log(userInfo);
         }
     }
 

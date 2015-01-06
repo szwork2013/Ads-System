@@ -62,8 +62,8 @@ var app = angular
                 resolve: { isLogged: isLogged }
             })
             .when('/admin/home', {
-                templateUrl: 'templates/admin/admin-home.html',
-                controller: 'AdminHomeController',
+                templateUrl: 'templates/home.html',
+                controller: 'HomeController',
                 resolve: { isLogged: isAdmin }
             })
             .when('/admin/ads', {

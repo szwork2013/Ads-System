@@ -13,6 +13,34 @@ app.controller('AllAdsController', function($scope, $window, adminAdsFactory, da
 
     $scope.urlParams = [];
 
+    $scope.getCategoryId = function(id){
+        $scope.urlParams['categoryIdParam'] = 'categoryid=' + id;
+        delete $scope.urlParams['currentPage'];
+        urlParser();
+    };
+
+    $scope.getTownId = function(id){
+        $scope.urlParams['townIdParam'] = 'townid=' + id;
+        delete $scope.urlParams['currentPage'];
+        urlParser();
+    };
+
+    $scope.getAllCategories = function(){
+        delete $scope.urlParams['categoryIdParam'];
+        urlParser();
+    };
+
+    $scope.getAllTowns = function(){
+        delete $scope.urlParams['townIdParam'];
+        urlParser();
+    };
+
+    $scope.getAdByStatus = function(status){
+        $scope.urlParams['status'] = 'status=' + status;
+        delete $scope.urlParams['currentPage'];
+        urlParser();
+    };
+
     $scope.showPage = function(text, page){
         $scope.urlParams['currentPage'] = 'startpage=' + page;
         urlParser();
@@ -22,7 +50,6 @@ app.controller('AllAdsController', function($scope, $window, adminAdsFactory, da
         adminAdsFactory.getAds(userInfo, $scope.urlParams)
             .then(function(data){
                 $scope.allAds = data;
-                console.log(data);
             }, function(error){
                 console.log(error);
             });

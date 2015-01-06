@@ -35,23 +35,37 @@
     </div>
     <div class="col-md-3">
         <div>
-            <div class="list-group">
-                <h3 class="text-center"><strong>Categories</strong></h3>
+            <div class="form-group">
+                <h3 class="text-center"><strong>Status</strong></h3>
                 <div>
-                    <select multiple>
-                        <option class="list-group-item" ng-click="getAllCategories()">All categories</option>
-                        <option class="list-group-item" ng-repeat="cat in categories" ng-click="getCategoryId(cat.id)">{{ cat.name }}</option>
+                    <select class="form-control" ng-model="adStatusFilter" ng-change="getAdByStatus(adStatusFilter)">
+                        <option value="">All</option>
+                        <option value="Published">Published</option>
+                        <option value="WaitingApproval">Waiting Approval</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Rejected">Rejected</option>
                     </select>
                 </div>
             </div>
         </div>
         <div>
-            <div class="list-group">
+            <div class="form-group">
+                <h3 class="text-center"><strong>Categories</strong></h3>
+                <div>
+                    <select class="form-control" ng-model="catIdFilter" ng-change="getCategoryId(catIdFilter)">
+                        <option value="" selected>All categories</option>
+                        <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
                 <h3 class="text-center"><strong>Towns</strong></h3>
                 <div>
-                    <select multiple>
-                        <option class="list-group-item" ng-click="getAllTowns()">All towns</option>
-                        <option class="list-group-item" ng-repeat="t in towns" ng-click="getTownId(t.id)">{{ t.name }}</option>
+                    <select class="form-control" ng-model="townIdFilter" ng-change="getTownId(townIdFilter)">
+                        <option value="" selected>All towns</option>
+                        <option ng-repeat="t in towns" value="{{ t.id }}">{{ t.name }}</option>
                     </select>
                 </div>
             </div>
