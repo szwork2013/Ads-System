@@ -74,13 +74,18 @@ var app = angular
                 resolve: { isLogged: isAdmin }
             })
             .when('/admin/ads', {
-                templateUrl: 'templates/admin/all-ads.html',
+                templateUrl: 'templates/admin/admin-home.html',
                 controller: 'AdminHomeController',
                 resolve: { isLogged: isAdmin }
             })
             .when('/admin/ads/edit/:id', {
-                templateUrl: 'templates/admin/edit-ad-admin.html',
+                templateUrl: 'templates/admin/admin-edit-ad.html',
                 controller: 'EditAdController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/users', {
+                templateUrl: 'templates/admin/admin-users-list.html',
+                controller: 'AdminUsersController',
                 resolve: { isLogged: isAdmin }
             })
             .otherwise({redirectTo: '/'});

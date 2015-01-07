@@ -7,6 +7,7 @@ app.controller('EditAdController', function(
     $location,
     userFactory,
     dataFactory){
+
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
 
     dataFactory.getCategories()

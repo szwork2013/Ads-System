@@ -1,1 +1,103 @@
-admin hom
+<div ng-click="closeMessage()" ng-show="successMessage" class="alert alert-dismissable alert-success text-center">
+    {{ successMessage }}
+</div>
+<div class="row">
+    <div class="col-md-9" >
+        <div class="row">
+            <div class="col-lg-12" ng-show="allAds.numItems == 0">
+                <hr />
+                <h2>No ads</h2>
+            </div>
+            <div class="col-lg-12" ng-repeat="ad in allAds.ads">
+                <hr />
+                <h3><strong>{{ ad.title }}</strong><small>  (Ad ID: {{ ad.id }})</small><span class="pull-right">{{ ad.date | date}}</span></h3>
+                <div class="col-md-3">
+                    <img class="img-thumbnail pull-left" fallback-src="images/no_image.gif" src="{{ ad.imageDataUrl }}">
+                </div>
+                <div class="col-md-5">
+                    {{ ad.text }}
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Status: </strong> <span class="pull-right">{{ ad.status }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Username: </strong> <span class="pull-right">{{ ad.ownerUsername }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Name: </strong> <span class="pull-right">{{ ad.ownerName }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email: </strong> <span class="pull-right">{{ ad.ownerEmail }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phone: </strong> <span class="pull-right">{{ ad.ownerPhone }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Category: </strong> <span class="pull-right">{{ ad.categoryName }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Town: </strong> <span class="pull-right">{{ ad.townName }}</span>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="pull-right">
+                            <a ng-click="approveAd(ad)" class="btn btn-success btn-xs">Approve</a>
+                            <a ng-click="rejectAd(ad)" class="btn btn-warning btn-xs">Reject</a>
+                            <a href="#/admin/ads/edit/{{ ad.id }}" scrollup class="btn btn-warning btn-xs">Edit</a>
+                            <a ng-click="confirmDeletion(ad)" class="btn btn-danger btn-xs">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <div class="form-group">
+                <h3 class="text-center"><strong>Status</strong></h3>
+                <div>
+                    <select class="form-control" ng-model="adStatusFilter" ng-change="getAdByStatus(adStatusFilter)">
+                        <option value="">All</option>
+                        <option value="Published">Published</option>
+                        <option value="WaitingApproval">Waiting Approval</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <h3 class="text-center"><strong>Categories</strong></h3>
+                <div>
+                    <select class="form-control" ng-model="catIdFilter" ng-change="getCategoryId(catIdFilter)">
+                        <option value="" selected>All categories</option>
+                        <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <h3 class="text-center"><strong>Towns</strong></h3>
+                <div>
+                    <select class="form-control" ng-model="townIdFilter" ng-change="getTownId(townIdFilter)">
+                        <option value="" selected>All towns</option>
+                        <option ng-repeat="t in towns" value="{{ t.id }}">{{ t.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <paging scrollup
+                class="small pull-right"
+                page="currentPage"
+                page-size="3"
+                total=allAds.numItems
+                paging-action="showPage('Paging Clicked', page)">
+        </paging>
+    </div>
+</div>
