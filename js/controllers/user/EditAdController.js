@@ -33,8 +33,14 @@ app.controller('EditAdController', function(
 
         userFactory.editAd(userInfo, ad)
             .then(function(data){
-                $rootScope.successMessage = data.message + ' Don\'t forget to submit it for publishing.';
-                $location.path('/user/ads');
+                if (userInfo.isAdmin){
+                    $rootScope.successMessage = data.message;
+                    $location.path('/admin/ads');
+                }
+                else {
+                    $rootScope.successMessage = data.message + ' Don\'t forget to submit it for publishing.';
+                    $location.path('/user/ads');
+                }
             }, function(error){
                 $scope.editAdError = error.modelState;
             })

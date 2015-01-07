@@ -1,0 +1,88 @@
+<div class="row">
+    <form class="form-horizontal" name="editAd">
+        <fieldset>
+            <legend>Edit Ad</legend>
+            <div ng-show="editAdError" class="alert alert-danger" ng-repeat="error in editAdError">{{ error }}</div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="user" class="col-lg-2 control-label">User</label>
+                        <div class="col-lg-10">
+                            <input id="user" type="text" ng-model="ad.ownerName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="col-lg-2 control-label">Status</label>
+                        <div class="col-lg-10">
+                            <input id="date" type="date" ng-model="ad.date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status" class="col-lg-2 control-label">Status</label>
+                        <div class="col-lg-10">
+                            <select ng-model="ad.status" class="form-control" id="status">
+                                <option  value="Published">Published</option>
+                                <option  value="WaitingApproval">Waiting Approval</option>
+                                <option  value="Inactive">Inactive</option>
+                                <option  value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title" class="col-lg-2 control-label">Title<span class="required-field">*</span></label>
+                            <div class="col-lg-10">
+                                <input ng-model="ad.title" type="text" class="form-control" id="title" placeholder="Title" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-lg-2 control-label">Text<span class="required-field">*</span></label>
+                            <div class="col-lg-10">
+                                <textarea ng-model="ad.text" class="form-control" id="text" placeholder="Text" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image" class="col-lg-2 control-label">Image</label>
+                            <div class="col-lg-10">
+                                <button ng-file-select accept="image/*" ng-file-change="generateThumb(ad)" ng-model="ad.image" id="image" class="form-control">Change Image...</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="col-lg-2 control-label">Category</label>
+                            <div class="col-lg-10">
+                                <select ng-model="ad.categoryId" class="form-control" id="category">
+                                    <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="town" class="col-lg-2 control-label">Town</label>
+                            <div class="col-lg-10">
+                                <select ng-model="ad.townId" class="form-control" id="town">
+                                    <option  ng-repeat="town in towns" value="{{ town.id }}">{{ town.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img id="publish-ad-img" src="{{ ad.imageDataUrl }}"">
+                        <button class="form-control" ng-click="deleteAdImage(ad)"><span class="color-red">Delete Image</span></button>
+                    </div>
+                </div>
+            </div>
+            <span class="help-block">
+                <p>
+                    All fields with <span class="required-field">*</span> are required!
+                </p>
+            </span>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <a href="#/admin/ads"><button class="btn btn-default">Cancel</button></a>
+                    <button ng-click="editAdBtn(ad)" ng-disabled="editAd.$invalid"  type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

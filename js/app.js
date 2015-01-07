@@ -3,7 +3,12 @@ var app = angular
     .config(function($routeProvider){
         var isNotLogged = function($location, $window){
             if ($window.sessionStorage["userInfo"]) {
-                $location.path('/user/home');
+                if (JSON.parse($window.sessionStorage['userInfo']).isAdmin){
+                    $location.path('/admin/ads');
+                }
+                else {
+                    $location.path('/user/home');
+                }
             }
         };
 
@@ -70,11 +75,11 @@ var app = angular
             })
             .when('/admin/ads', {
                 templateUrl: 'templates/admin/all-ads.html',
-                controller: 'AllAdsController',
+                controller: 'AdminHomeController',
                 resolve: { isLogged: isAdmin }
             })
             .when('/admin/ads/edit/:id', {
-                templateUrl: 'templates/user/edit-ad.html',
+                templateUrl: 'templates/admin/edit-ad-admin.html',
                 controller: 'EditAdController',
                 resolve: { isLogged: isAdmin }
             })
