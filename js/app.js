@@ -14,9 +14,11 @@ var app = angular
         };
 
         var isAdmin = function($location, $window){
-            var userInfo = JSON.parse($window.sessionStorage['userInfo']);
-            if (!userInfo.isAdmin) {
+            if (!$window.sessionStorage["userInfo"]){
                 $location.path('/');
+            }
+            else if (!JSON.parse($window.sessionStorage['userInfo']).isAdmin){
+                $location.path('/user/home');
             }
         };
 
@@ -69,6 +71,11 @@ var app = angular
             .when('/admin/ads', {
                 templateUrl: 'templates/admin/all-ads.html',
                 controller: 'AllAdsController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/ads/edit/:id', {
+                templateUrl: 'templates/user/edit-ad.html',
+                controller: 'EditAdController',
                 resolve: { isLogged: isAdmin }
             })
             .otherwise({redirectTo: '/'});

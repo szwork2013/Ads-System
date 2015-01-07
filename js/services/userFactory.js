@@ -1,10 +1,11 @@
 app.factory('userFactory', function($http, $q){
-    var API_URL = 'http://softuni-ads.azurewebsites.net/api/user';
+    var API_URL = 'http://softuni-ads.azurewebsites.net/api';
 
     function publishNewAd(ad, user){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
-        $http.post(API_URL + '/ads',
+        $http.post(API_URL + userUrl + '/ads',
             {
                 title: ad.title,
                 text: ad.text,
@@ -29,6 +30,7 @@ app.factory('userFactory', function($http, $q){
 
     function getUserAds(user, urlParams){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
         var parameters = '';
 
@@ -36,7 +38,7 @@ app.factory('userFactory', function($http, $q){
             parameters += '&' + urlParams[par];
         }
 
-        $http.get(API_URL + '/ads?pagesize=3' + parameters, {
+        $http.get(API_URL + userUrl + '/ads?pagesize=3' + parameters, {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }
@@ -53,8 +55,9 @@ app.factory('userFactory', function($http, $q){
 
     function deactivateAd(user, id){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
-        $http.put(API_URL + '/ads/deactivate/' + id, '', {
+        $http.put(API_URL + userUrl + '/ads/deactivate/' + id, '', {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }
@@ -71,8 +74,9 @@ app.factory('userFactory', function($http, $q){
 
     function publishAgainAd(user, id){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
-        $http.put(API_URL + '/ads/publishagain/' + id, '', {
+        $http.put(API_URL + userUrl + '/ads/publishagain/' + id, '', {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }
@@ -89,8 +93,9 @@ app.factory('userFactory', function($http, $q){
 
     function deleteAd(user, id){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
-        $http.delete(API_URL + '/ads/' + id, {
+        $http.delete(API_URL + userUrl + '/ads/' + id, {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }
@@ -107,8 +112,9 @@ app.factory('userFactory', function($http, $q){
 
     function getAdBuId(user, id){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
 
-        $http.get(API_URL + '/ads/' + id, {
+        $http.get(API_URL + userUrl + '/ads/' + id, {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }
@@ -125,16 +131,26 @@ app.factory('userFactory', function($http, $q){
 
     function editAd(user, ad){
         var defer = $q.defer();
+        var userUrl = user.isAdmin ? '/admin' : '/user';
+        var data = user.isAdmin ? {
+            title: ad.title,
+            text: ad.text,
+            changeimage: ad.changeImage,
+            ImageDataURL: ad.imageDataUrl,
+            categoryid: ad.categoryId,
+            townid: ad.townId
+        } : {
+            title: ad.title,
+            text: ad.text,
+            changeimage: ad.changeImage,
+            ImageDataURL: ad.imageDataUrl,
+            categoryid: ad.categoryId,
+            townid: ad.townId,
+            status: ad.status,
+            date: ad.date
+        };
 
-        $http.put(API_URL + '/ads/' + ad.id,
-            {
-                title: ad.title,
-                text: ad.text,
-                changeimage: ad.changeImage,
-                ImageDataURL: ad.imageDataUrl,
-                categoryid: ad.categoryId,
-                townid: ad.townId
-            },
+        $http.put(API_URL + userUrl + '/ads/' + ad.id, data,
             {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
