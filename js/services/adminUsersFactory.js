@@ -33,7 +33,8 @@ app.factory('adminUsersFactory', function($http, $q){
             name: data.name,
             email: data.email,
             phoneNumber: data.phoneNumber,
-            townid: data.townId
+            townid: data.townId,
+            isAdmin: data.isAdmin
         }, {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
