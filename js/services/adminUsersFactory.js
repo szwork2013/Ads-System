@@ -50,8 +50,31 @@ app.factory('adminUsersFactory', function($http, $q){
         return defer.promise;
     }
 
+    function changeUserPassword(user, data, userToEdit){
+        var defer = $q.defer();
+
+        $http.put(API_URL + '/SetPassword',{
+            username: userToEdit.username,
+            newPassword: data.newPassword,
+            confirmPassword: data.confirmPassword
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + user.access_token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         getUsers: getUsers,
-        editUser: editUser
+        editUser: editUser,
+        changeUserPassword: changeUserPassword
     }
 });

@@ -32,6 +32,16 @@ app.controller('AdminUsersController', function(
             });
     };
 
+    $scope.changeUserPassword = function(pass, userToEdit){
+        adminUsersFactory.changeUserPassword(userInfo, pass, userToEdit)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/users/');
+            }, function(error){
+                console.log(error);
+            });
+    };
+
     $scope.urlParams = [];
 
     $scope.showPage = function(text, page){
