@@ -1,3 +1,6 @@
+<div ng-click="closeMessage()" ng-show="successMessage" class="alert alert-dismissable alert-success text-center">
+    {{ successMessage }}
+</div>
 <div class="row">
     <table class="table table-striped table-hover ">
         <thead>
@@ -17,7 +20,7 @@
             <td>{{ user.phoneNumber }}</td>
             <td>
                 <div class="pull-right">
-                    <a class="btn btn-warning btn-xs" href="">Edit</a>
+                    <a class="btn btn-warning btn-xs" scrollup ng-click="showEditUserPage(user)">Edit</a>
                     <a class="btn btn-danger btn-xs" href="">Delete</a>
                 </div>
             </td>

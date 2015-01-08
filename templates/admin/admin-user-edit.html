@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" name="editProfileForm">
+            <fieldset>
+                <div ng-show="editProfileError" class="alert alert-danger" ng-repeat="err in editProfileError">{{ err }}</div>
+                <legend>Edit Profile</legend>
+                <div class="form-group">
+                    <label for="name" class="col-lg-2 control-label">Name<span class="required-field">*</span></label>
+                    <div class="col-lg-10">
+                        <input ng-model="userToEdit.name" required type="text" class="form-control" id="name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-lg-2 control-label">Phone<span class="required-field">*</span></label>
+                    <div class="col-lg-10">
+                        <input ng-model="userToEdit.phoneNumber" required ng-pattern="/[0-9]+/" type="text" class="form-control" id="phone" placeholder="Phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email<span class="required-field">*</span></label>
+                    <div class="col-lg-10">
+                        <input ng-model="userToEdit.email" required type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="town" class="col-lg-2 control-label">Town</label>
+                    <div class="col-lg-4">
+                        <select class="form-control" ng-model="userToEdit.townId">
+                            <option id="town" ng-repeat="town in towns" ng-selected="userToEdit.townId == town.id" value="{{ town.id }}">{{ town.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <span class="help-block">
+                    <p>
+                        All fields with <span class="required-field">*</span> are required!
+                    </p>
+                </span>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="#/admin/users"><button class="btn btn-default">Cancel</button></a>
+                        <button ng-click="editUser(userToEdit)" ng-disabled="editProfileForm.$invalid" scrollup class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form class="form-horizontal" name="editProfilePasswordForm">
+            <fieldset>
+                <div ng-show="editProfilePasswordError" class="alert alert-danger" ng-repeat="err in editProfilePasswordError">{{ err }}</div>
+                <legend>Change Password</legend>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-lg-4 control-label">New password<span class="required-field">*</span></label>
+                    <div class="col-lg-8">
+                        <input ng-model="password.newPassword" required type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputConfirmPassword" class="col-lg-4 control-label">Confirm Password<span class="required-field">*</span></label>
+                    <div class="col-lg-8">
+                        <input required ng-model="password.confirmPassword" password-match="password.new" name="test" type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Passwor">
+                    </div>
+                </div>
+                <span class="help-block">
+                    <p>
+                        All fields with <span class="required-field">*</span> are required!
+                    </p>
+                </span>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="#/admin/users"><button class="btn btn-default">Cancel</button></a>
+                        <button ng-click="changePassword(password)" class="btn btn-primary">Change Password</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,5 +1,28 @@
-app.controller('AdminUsersController', function($scope, $window, adminUsersFactory){
+app.controller('AdminUsersController', function($scope, $rootScope, $window, $location, dataFactory, adminUsersFactory){
     var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+    if ($window.sessionStorage['userToEdit']) {
+        $scope.userToEdit = JSON.parse($window.sessionStorage['userToEdit']);
+    }
+
+    dataFactory.getTowns()
+        .then(function(data){
+            $scope.towns = data;
+        });
+
+    $scope.showEditUserPage = function(user){
+        $window.sessionStorage['userToEdit'] = JSON.stringify(user);
+        $location.path('/admin/users/edit/' + user.username);
+    };
+
+    $scope.editUser = function(userEdited){
+        adminUsersFactory.editUser(userInfo, userEdited)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/users/');
+            }, function(error){
+                console.log(error);
+            });
+    };
 
     $scope.urlParams = [];
 
@@ -11,12 +34,15 @@ app.controller('AdminUsersController', function($scope, $window, adminUsersFacto
     function urlParser(){
         adminUsersFactory.getUsers(userInfo, $scope.urlParams)
             .then(function(data){
-                console.log(data);
                 $scope.data = data;
             }, function(error){
                 console.log(error);
             });
     }
+
+    $scope.closeMessage = function(){
+        $rootScope.successMessage = undefined;
+    };
 
     urlParser();
 });

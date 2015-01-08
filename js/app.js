@@ -88,6 +88,11 @@ var app = angular
                 controller: 'AdminUsersController',
                 resolve: { isLogged: isAdmin }
             })
+            .when('/admin/users/edit/:username', {
+                templateUrl: 'templates/admin/admin-user-edit.html',
+                controller: 'AdminUsersController',
+                resolve: { isLogged: isAdmin }
+            })
             .otherwise({redirectTo: '/'});
 
         //$locationProvider.html5Mode(true);
