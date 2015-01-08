@@ -3,12 +3,12 @@ app.controller('EditAdController', function(
     $rootScope,
     $routeParams,
     $timeout,
-    $window,
     $location,
     userFactory,
+    authFactory,
     dataFactory){
 
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+    var userInfo = authFactory.getUserInfo();
 
     dataFactory.getCategories()
         .then(function(data){

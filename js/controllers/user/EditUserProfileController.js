@@ -1,12 +1,11 @@
 app.controller('EditUserProfileController', function(
     $scope,
     $rootScope,
-    $window,
     $location,
     dataFactory,
     authFactory) {
 
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+    var userInfo = authFactory.getUserInfo();
 
     dataFactory.getTowns()
         .then(function(data){

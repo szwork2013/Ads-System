@@ -5,7 +5,7 @@ app.controller('LoginController', function($scope, $rootScope, $location, authFa
                 $rootScope.user = userInfo;
                 $rootScope.successMessage = 'Successful login!';
                 if (userInfo.isAdmin){
-                    $location.path('/admin/home');
+                    $location.path('/admin/ads');
                 }
                 else {
                     $location.path('/user/home');

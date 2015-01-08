@@ -1,5 +1,13 @@
-app.controller('AdminUsersController', function($scope, $rootScope, $window, $location, dataFactory, adminUsersFactory){
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+app.controller('AdminUsersController', function(
+    $scope,
+    $rootScope,
+    $window,
+    $location,
+    dataFactory,
+    authFactory,
+    adminUsersFactory){
+
+    var userInfo = authFactory.getUserInfo();
     if ($window.sessionStorage['userToEdit']) {
         $scope.userToEdit = JSON.parse($window.sessionStorage['userToEdit']);
     }

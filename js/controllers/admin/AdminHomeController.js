@@ -1,12 +1,12 @@
 app.controller('AdminHomeController', function(
     $scope,
-    $window,
     adminAdsFactory,
     dataFactory,
     userFactory,
+    authFactory,
     createDialog){
 
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+    var userInfo = authFactory.getUserInfo();
 
     dataFactory.getCategories()
         .then(function(data){

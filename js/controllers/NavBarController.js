@@ -1,4 +1,4 @@
-app.controller('NavBarController', function($scope, $rootScope, $location, $window, authFactory){
+app.controller('NavBarController', function($scope, $rootScope, $location, authFactory){
 
     $scope.logout = function(user){
         authFactory.logoutUser(user)

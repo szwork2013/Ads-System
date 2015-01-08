@@ -146,7 +146,8 @@ app.factory('userFactory', function($http, $q){
             text: ad.text,
             changeimage: ad.changeImage,
             ImageDataURL: ad.imageDataUrl,
-            categoryid: ad.categoryId
+            categoryid: ad.categoryId,
+            townid: ad.townId
         };
 
         $http.put(API_URL + userUrl + '/ads/' + ad.id, data,

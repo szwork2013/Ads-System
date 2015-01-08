@@ -3,11 +3,11 @@ app.controller('PublishAdController', function(
     $rootScope,
     $timeout,
     $location,
-    $window,
     dataFactory,
-    userFactory)
+    userFactory,
+    authFactory)
 {
-    var userInfo = JSON.parse($window.sessionStorage['userInfo']);
+    var userInfo = authFactory.getUserInfo();
 
     dataFactory.getCategories()
         .then(function(data){
