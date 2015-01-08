@@ -72,9 +72,28 @@ app.factory('adminUsersFactory', function($http, $q){
         return defer.promise;
     }
 
+    function deleteUser(user, userToDelete){
+        var defer = $q.defer();
+
+        $http.delete(API_URL + '/user/' + userToDelete.username, {
+            headers: {
+                Authorization: 'Bearer ' + user.access_token
+            }
+        })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         getUsers: getUsers,
         editUser: editUser,
-        changeUserPassword: changeUserPassword
+        changeUserPassword: changeUserPassword,
+        deleteUser: deleteUser
     }
 });

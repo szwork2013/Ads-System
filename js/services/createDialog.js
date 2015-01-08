@@ -1,11 +1,11 @@
-angular.module('fundoo.services', []).factory('createDialog', ["$document", "$compile", "$rootScope", "$controller", "$timeout",
+app.factory('createDialog', ["$document", "$compile", "$rootScope", "$controller", "$timeout",
     function ($document, $compile, $rootScope, $controller, $timeout) {
         var defaults = {
             id: null,
-            template: '<h3 class="text-center">Do you really want to delete this add? <br/>There is no way back!</h3>',
+            template: null,
             templateUrl: null,
             title: 'Default Title',
-            backdrop: true,
+            backdrop: false,
             success: {label: 'OK', fn: null},
             cancel: {label: 'Close', fn: null},
             controller: null, //just like route controller declaration

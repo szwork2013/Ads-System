@@ -5,7 +5,8 @@ app.controller('AdminUsersController', function(
     $location,
     dataFactory,
     authFactory,
-    adminUsersFactory){
+    adminUsersFactory,
+    createDialog){
 
     var userInfo = authFactory.getUserInfo();
     if ($window.sessionStorage['userToEdit']) {
@@ -40,6 +41,29 @@ app.controller('AdminUsersController', function(
             }, function(error){
                 console.log(error);
             });
+    };
+
+    function deleteUser(user){
+        adminUsersFactory.deleteUser(userInfo, user)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/users/');
+            }, function(error){
+                console.log(error);
+            });
+    }
+
+    $scope.showDeleteUserConfirmation = function(user){
+        createDialog('../../templates/delete-user-confirmation-.html',{
+            id : 'simpleDialog',
+            title: 'Confirm deletion',
+            backdrop: true,
+            success: {
+                label: 'DELETE',fn: function(){
+                    deleteUser(user);
+                }
+            }
+        });
     };
 
     $scope.urlParams = [];
