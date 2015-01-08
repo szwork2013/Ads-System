@@ -54,7 +54,7 @@ app.controller('AdminUsersController', function(
     }
 
     $scope.showDeleteUserConfirmation = function(user){
-        createDialog('../../templates/delete-user-confirmation-.html',{
+        createDialog('../../templates/delete-user-confirmation-new.html',{
             id : 'simpleDialog',
             title: 'Confirm deletion',
             backdrop: true,
