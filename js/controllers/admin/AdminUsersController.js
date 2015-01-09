@@ -27,6 +27,7 @@ app.controller('AdminUsersController', function(
         adminUsersFactory.editUser(userInfo, userEdited)
             .then(function(data){
                 $rootScope.successMessage = data.message;
+                $window.sessionStorage['userToEdit'] = undefined;
                 $location.path('/admin/users/');
             }, function(error){
                 console.log(error);

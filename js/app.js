@@ -4,7 +4,7 @@ var app = angular
         var isNotLogged = function($location, $window){
             if ($window.sessionStorage["userInfo"]) {
                 if (JSON.parse($window.sessionStorage['userInfo']).isAdmin){
-                    $location.path('/admin/ads');
+                    $location.path('/admin/home');
                 }
                 else {
                     $location.path('/user/home');
@@ -85,6 +85,16 @@ var app = angular
             })
             .when('/admin/users/edit/:username', {
                 templateUrl: 'templates/admin/admin-user-edit.html',
+                controller: 'AdminUsersController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/categories', {
+                templateUrl: 'templates/admin/admin-categories-list.html',
+                controller: 'AdminCategoriesController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/towns', {
+                templateUrl: 'templates/admin/admin-towns-list.html',
                 controller: 'AdminUsersController',
                 resolve: { isLogged: isAdmin }
             })
