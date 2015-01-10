@@ -47,8 +47,30 @@ app.factory('adminTownsFactory', function($http, $q){
         return defer.promise;
     }
 
+    function createTown(user, town){
+        var defer = $q.defer();
+
+        $http.post(API_URL, {
+                name: town.name
+            },
+            {
+                headers: {
+                    Authorization: 'Bearer ' + user.access_token
+                }
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         getTowns: getTowns,
-        editTown: editTown
+        editTown: editTown,
+        createTown: createTown
     }
 });

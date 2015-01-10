@@ -40,7 +40,17 @@ app.controller('AdminTownsController', function(
                 $rootScope.successMessage = data.message;
                 $location.path('/admin/towns/');
             }, function(error){
-                $scope.createCategoryError = error.modelState;
+                $scope.editTownError = error.modelState;
+            });
+    };
+
+    $scope.createTownBtn = function(town){
+        adminTownsFactory.createTown(userInfo, town)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/towns/');
+            }, function(error){
+                $scope.createTownError = error.modelState;
             });
     };
 
