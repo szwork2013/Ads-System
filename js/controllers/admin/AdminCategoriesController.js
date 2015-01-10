@@ -61,7 +61,7 @@ app.controller('AdminCategoriesController', function(
                 $rootScope.successMessage = data.message;
                 $location.path('/admin/categories/');
             }, function(error){
-                $scope.createCategoryError = error.modelState;
+                console.log(error);
             });
     }
 

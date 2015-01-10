@@ -4,7 +4,8 @@ app.controller('AdminTownsController', function(
     $window,
     $location,
     authFactory,
-    adminTownsFactory){
+    adminTownsFactory,
+    createDialog){
 
     var userInfo = authFactory.getUserInfo();
     if ($window.sessionStorage['townToEdit']) {
@@ -52,6 +53,29 @@ app.controller('AdminTownsController', function(
             }, function(error){
                 $scope.createTownError = error.modelState;
             });
+    };
+
+    function deleteTown(town){
+        adminTownsFactory.deleteTown(userInfo, town)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/towns/');
+            }, function(error){
+                console.log(error);
+            });
+    }
+
+    $scope.showDeleteTownConfirmation = function(town){
+        createDialog('../../templates/delete-town-confirmation.html',{
+            id : 'simpleDialog',
+            title: 'Confirm deletion',
+            backdrop: true,
+            success: {
+                label: 'DELETE',fn: function(){
+                    deleteTown(town);
+                }
+            }
+        });
     };
 
     $scope.closeMessage = function(){

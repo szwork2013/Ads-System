@@ -68,9 +68,29 @@ app.factory('adminTownsFactory', function($http, $q){
         return defer.promise;
     }
 
+    function deleteTown(user, town){
+        var defer = $q.defer();
+
+        $http.delete(API_URL + '/' + town.id,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + user.access_token
+                }
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         getTowns: getTowns,
         editTown: editTown,
-        createTown: createTown
+        createTown: createTown,
+        deleteTown: deleteTown
     }
 });
