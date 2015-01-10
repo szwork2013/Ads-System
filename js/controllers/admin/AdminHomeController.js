@@ -85,7 +85,7 @@ app.controller('AdminHomeController', function(
     function deleteAd(ad){
         userFactory.deleteAd(userInfo, ad.id)
             .then(function(data){
-                $rootScope.successMessage = data.message;
+                $scope.successMessage = data.message;
                 urlParser();
             }, function(error){
                 console.log(error);
@@ -107,6 +107,7 @@ app.controller('AdminHomeController', function(
 
     $scope.closeMessage = function(){
         $rootScope.successMessage = undefined;
+        $scope.successMessage = undefined;
     };
 
     urlParser();

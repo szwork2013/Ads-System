@@ -42,18 +42,16 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div>
-            <div class="list-group">
-                <h3 class="text-center"><strong>My Ads</strong></h3>
-                <div>
-                    <select multiple>
-                        <option class="list-group-item" ng-click="getAdByStatus('')">All</option>
-                        <option class="list-group-item" ng-click="getAdByStatus('Published')">Published</option>
-                        <option class="list-group-item" ng-click="getAdByStatus('WaitingApproval')">Waiting Approval</option>
-                        <option class="list-group-item" ng-click="getAdByStatus('Inactive')">Inactive</option>
-                        <option class="list-group-item" ng-click="getAdByStatus('Rejected')">Rejected</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <h3 class="text-center"><strong>My Ads</strong></h3>
+            <div>
+                <select class="form-control" ng-model="adStatusFilter" ng-change="getAdByStatus(adStatusFilter)">
+                    <option value="">All</option>
+                    <option value="Published">Published</option>
+                    <option value="WaitingApproval">Waiting Approval</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
             </div>
         </div>
     </div>
