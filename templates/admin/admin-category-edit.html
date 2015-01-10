@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form class="form-horizontal" name="editCategory">
+            <fieldset>
+                <legend>Edit Category</legend>
+                <div ng-show="editCategoryError" class="alert alert-danger" ng-repeat="error in editCategoryError">{{ error }}</div>
+                <div class="form-group">
+                    <label for="title" class="col-lg-3 control-label">Category<span class="required-field">*</span></label>
+                    <div class="col-lg-9">
+                        <input ng-model="categoryToEdit.username" type="text" class="form-control" id="title" placeholder="Title" required>
+                    </div>
+                </div>
+                <span class="help-block">
+                    <p>
+                        All fields with <span class="required-field">*</span> are required!
+                    </p>
+                </span>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="#/admin/categories"><button class="btn btn-default">Cancel</button></a>
+                        <button ng-click="editCategoryBtn(categoryToEdit)" ng-disabled="editCategory.$invalid"  type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

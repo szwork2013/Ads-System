@@ -10,7 +10,7 @@ app.factory('adminUsersFactory', function($http, $q){
             parameters += '&' + urlParams[par];
         }
 
-        $http.get(API_URL + '/users?pagesize=10' + parameters, {
+        $http.get(API_URL + '/users?pagesize=8' + parameters, {
             headers: {
                 Authorization: 'Bearer ' + user.access_token
             }

@@ -3,6 +3,7 @@ app.controller('AdminUsersController', function(
     $rootScope,
     $window,
     $location,
+    $routeParams,
     dataFactory,
     authFactory,
     adminUsersFactory,
@@ -20,14 +21,13 @@ app.controller('AdminUsersController', function(
 
     $scope.showEditUserPage = function(user){
         $window.sessionStorage['userToEdit'] = JSON.stringify(user);
-        $location.path('/admin/users/edit/' + user.username);
+        $location.path('/admin/users/edit/' + user.$$hashKey);
     };
 
     $scope.editUser = function(userEdited){
         adminUsersFactory.editUser(userInfo, userEdited)
             .then(function(data){
                 $rootScope.successMessage = data.message;
-                $window.sessionStorage['userToEdit'] = undefined;
                 $location.path('/admin/users/');
             }, function(error){
                 console.log(error);
