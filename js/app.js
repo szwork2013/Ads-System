@@ -105,7 +105,17 @@ var app = angular
             })
             .when('/admin/towns', {
                 templateUrl: 'templates/admin/admin-towns-list.html',
-                controller: 'AdminUsersController',
+                controller: 'AdminTownsController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/town/edit/:id', {
+                templateUrl: 'templates/admin/admin-town-edit.html',
+                controller: 'AdminTownsController',
+                resolve: { isLogged: isAdmin }
+            })
+            .when('/admin/town/create', {
+                templateUrl: 'templates/admin/admin-town-create.html',
+                controller: 'AdminTownsController',
                 resolve: { isLogged: isAdmin }
             })
             .otherwise({redirectTo: '/'});
