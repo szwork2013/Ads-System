@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <button ng-click="showCreateTownPage()" class="btn btn-success btn-xs pull-right">Create New Town</button>
+        <a href="#/admin/town/create" class="btn btn-success btn-xs pull-right">Create New Town</a>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -17,8 +17,8 @@
                 <td>{{ town.username }}</td>
                 <td>
                     <div class="pull-right">
-                        <a class="btn btn-warning btn-xs" scrollup ng-click="showEditTownPage(cat)">Edit</a>
-                        <a class="btn btn-danger btn-xs" scrollup ng-click="showDeleteTownConfirmation(cat)">Delete</a>
+                        <a class="btn btn-warning btn-xs" scrollup ng-click="showEditTownPage(town)">Edit</a>
+                        <a class="btn btn-danger btn-xs" scrollup ng-click="showDeleteTownConfirmation(town)">Delete</a>
                     </div>
                 </td>
             </tr>

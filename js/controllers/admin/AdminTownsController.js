@@ -1,5 +1,15 @@
-app.controller('AdminTownsController', function($scope, authFactory, adminTownsFactory){
+app.controller('AdminTownsController', function(
+    $scope,
+    $rootScope,
+    $window,
+    $location,
+    authFactory,
+    adminTownsFactory){
+
     var userInfo = authFactory.getUserInfo();
+    if ($window.sessionStorage['townToEdit']) {
+        $scope.townToEdit = JSON.parse($window.sessionStorage['townToEdit']);
+    }
 
     $scope.urlParams = [];
 
@@ -17,5 +27,24 @@ app.controller('AdminTownsController', function($scope, authFactory, adminTownsF
     $scope.showPage = function(text, page){
         $scope.urlParams['currentPage'] = 'startpage=' + page;
         urlParser();
+    };
+
+    $scope.showEditTownPage = function(town){
+        $window.sessionStorage['townToEdit'] = JSON.stringify(town);
+        $location.path('/admin/town/edit/' + town.id);
+    };
+
+    $scope.editTownBtn = function(town){
+        adminTownsFactory.editTown(userInfo, town)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/towns/');
+            }, function(error){
+                $scope.createCategoryError = error.modelState;
+            });
+    };
+
+    $scope.closeMessage = function(){
+        $rootScope.successMessage = undefined;
     };
 });

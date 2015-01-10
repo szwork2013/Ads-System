@@ -45,10 +45,6 @@ app.controller('AdminCategoriesController', function(
             });
     };
 
-    $scope.showCreateCategoryPage = function(){
-        $location.path('/admin/category/create/');
-    };
-
     $scope.createCategoryBtn = function(category){
         adminCategoriesFactory.createCategory(userInfo, category)
             .then(function(data){
