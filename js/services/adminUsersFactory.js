@@ -29,7 +29,7 @@ app.factory('adminUsersFactory', function($http, $q){
     function editUser(user, data){
         var defer = $q.defer();
 
-        $http.put(API_URL + '/user/' + data.name,{
+        $http.put(API_URL + '/user/' + data.username,{
             name: data.name,
             email: data.email,
             phoneNumber: data.phoneNumber,
