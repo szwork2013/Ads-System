@@ -44,11 +44,21 @@ app.controller('AdminCategoriesController', function(
                 $rootScope.successMessage = data.message;
                 $location.path('/admin/categories/');
             }, function(error){
-                console.log(error);
+                $scope.createCategoryError = error.modelState;
             });
     };
 
     $scope.showCreateCategoryPage = function(){
         $location.path('/admin/category/create/');
+    };
+
+    $scope.createCategoryBtn = function(category){
+        adminCategoriesFactory.createCategory(userInfo, category)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/categories/');
+            }, function(error){
+                $scope.createCategoryError = error.modelState;
+            });
     }
 });

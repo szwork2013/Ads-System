@@ -98,6 +98,11 @@ var app = angular
                 controller: 'AdminCategoriesController',
                 resolve: { isLogged: isAdmin }
             })
+            .when('/admin/category/create', {
+                templateUrl: 'templates/admin/admin-category-create.html',
+                controller: 'AdminCategoriesController',
+                resolve: { isLogged: isAdmin }
+            })
             .when('/admin/towns', {
                 templateUrl: 'templates/admin/admin-towns-list.html',
                 controller: 'AdminUsersController',

@@ -51,7 +51,7 @@ app.factory('adminCategoriesFactory', function($http, $q){
         var defer = $q.defer();
 
         $http.post(API_URL, {
-            name: category.username
+            name: category.name
         },
         {
             headers: {
