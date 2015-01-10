@@ -4,7 +4,8 @@ app.controller('AdminCategoriesController', function(
     $window,
     $location,
     authFactory,
-    adminCategoriesFactory){
+    adminCategoriesFactory,
+    createDialog){
 
     var userInfo = authFactory.getUserInfo();
     if ($window.sessionStorage['categoryToEdit']) {
@@ -27,10 +28,6 @@ app.controller('AdminCategoriesController', function(
     $scope.showPage = function(text, page){
         $scope.urlParams['currentPage'] = 'startpage=' + page;
         urlParser();
-    };
-
-    $scope.closeMessage = function(){
-        $rootScope.successMessage = undefined;
     };
 
     $scope.showEditCategoryPage = function(category){
@@ -60,5 +57,32 @@ app.controller('AdminCategoriesController', function(
             }, function(error){
                 $scope.createCategoryError = error.modelState;
             });
+    };
+
+    function deleteCategory(category){
+        adminCategoriesFactory.deleteCategory(userInfo, category)
+            .then(function(data){
+                $rootScope.successMessage = data.message;
+                $location.path('/admin/categories/');
+            }, function(error){
+                $scope.createCategoryError = error.modelState;
+            });
     }
+
+    $scope.showDeleteCategoryConfirmation = function(category){
+        createDialog('../../templates/delete-category-confirmation.html',{
+            id : 'simpleDialog',
+            title: 'Confirm deletion',
+            backdrop: true,
+            success: {
+                label: 'DELETE',fn: function(){
+                    deleteCategory(category);
+                }
+            }
+        });
+    };
+
+    $scope.closeMessage = function(){
+        $rootScope.successMessage = undefined;
+    };
 });

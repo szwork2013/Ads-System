@@ -68,9 +68,29 @@ app.factory('adminCategoriesFactory', function($http, $q){
         return defer.promise;
     }
 
+    function deleteCategory(user, category){
+        var defer = $q.defer();
+
+        $http.delete(API_URL + '/' + category.id,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + user.access_token
+                }
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data);
+            });
+
+        return defer.promise;
+    }
+
     return {
         getCategories: getCategories,
         editCategory: editCategory,
-        createCategory: createCategory
+        createCategory: createCategory,
+        deleteCategory: deleteCategory
     }
 });
